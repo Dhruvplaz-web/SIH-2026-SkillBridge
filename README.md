@@ -3,6 +3,9 @@
 > **Smart India Hackathon 2026 | Problem Statement ID: SIH26044**  
 > *Connecting Academic Potential with Industrial Opportunity through Sovereign Verification, Proctored Competency Telemetry, and Statutory Compliance.*
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Dhruvplaz-web/SIH-2026-SkillBridge)
+
+
 ---
 
 ## 🏛️ Executive Overview
