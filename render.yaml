@@ -1,0 +1,46 @@
+services:
+  # ── SkillBridge Node.js Backend API ──────────────────────────
+  - type: web
+    name: skillbridge-backend
+    runtime: node
+    plan: free
+    region: oregon
+    rootDir: skillbridge/backend
+    buildCommand: npm install --include=dev && npm run build
+    startCommand: npm run start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: FRONTEND_URL
+        value: "*"
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+
+  # ── SkillBridge React Frontend Static Site ───────────────────
+  - type: web
+    name: skillbridge-frontend
+    runtime: static
+    plan: free
+    region: oregon
+    rootDir: skillbridge/frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: skillbridge-backend
+          envVarKey: RENDER_EXTERNAL_URL
