@@ -140,8 +140,8 @@ export function JudgeRoleSwitcher() {
             <div className="mt-3 bg-white/10 rounded-lg p-2 flex items-center gap-2 border border-white/10">
               <Cpu className="w-4 h-4 text-emerald-400 flex-shrink-0" />
               <div className="text-[11px] leading-tight text-gray-200">
-                <span className="font-semibold text-emerald-300">5/5 Sovereign ML Engines Active</span>
-                <div className="text-[10px] text-gray-400">Local inference • 0 token costs • 100% DPDP Act Compliant</div>
+                <span className="font-semibold text-emerald-300">8/8 Sovereign ML Engines Active</span>
+                <div className="text-[10px] text-gray-400">Dual-Engine Consensus • Sub-5ms Local Inference • DPDP Act 2023</div>
               </div>
             </div>
           </div>

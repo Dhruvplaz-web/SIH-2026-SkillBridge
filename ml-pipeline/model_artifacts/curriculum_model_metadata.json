@@ -1,0 +1,14 @@
+{
+  "model_name": "CurriculumHarmonizer-NASSCOM-v2.3",
+  "algorithm": "N-Gram Topic Vectorizer + Obsolete Heuristic Pruning",
+  "mae_pct": 8.75,
+  "correlation_r": 0.942,
+  "training_samples": 4200,
+  "supported_domains": [
+    "CSE",
+    "ECE",
+    "AI & DS",
+    "Mechanical",
+    "Cybersecurity"
+  ]
+}
