@@ -31,3 +31,8 @@ coverage/
 scratch/
 .system_generated/
 cloudflared.exe
+
+# Uploaded candidate files & resumes
+uploads/
+skillbridge/backend/uploads/
+
