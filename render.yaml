@@ -29,8 +29,6 @@ services:
   - type: web
     name: skillbridge-frontend
     runtime: static
-    plan: free
-    region: oregon
     rootDir: skillbridge/frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
