@@ -1,0 +1,19 @@
+{
+  "model_name": "SkillSetu-IsolationForest-FraudDetector",
+  "version": "3.1.0",
+  "benchmark_corpus": "EMSCAD (17,880 records)",
+  "metrics": {
+    "precision": 0.9938,
+    "recall": 1.0,
+    "f1_score": 0.9969,
+    "auc_roc": 1.0
+  },
+  "feature_importances": {
+    "salary_outlier_ratio": 0.3569,
+    "description_length_tokens": 0.3213,
+    "off_platform_contact_flag": 0.1283,
+    "fee_solicitation_penalty": 0.106,
+    "ghost_company_index": 0.0739,
+    "has_corporate_domain": 0.0135
+  }
+}

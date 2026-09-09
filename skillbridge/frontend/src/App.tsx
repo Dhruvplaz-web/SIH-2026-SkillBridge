@@ -53,6 +53,9 @@ import DigiLockerGateway from './pages/admin/DigiLockerGateway';
 import LedgerMonitor from './pages/admin/LedgerMonitor';
 
 
+// Public
+import LandingPage from './pages/public/LandingPage';
+
 // Shared
 import Notifications from './pages/shared/Notifications';
 import NotFound from './pages/shared/NotFound';
@@ -76,10 +79,12 @@ export default function App() {
           <PageMetaTracker />
         <Routes>
           {/* Public */}
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/home" element={<LandingPage />} />
+          <Route path="/portal" element={<RootRedirect />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/portfolio/:id" element={<Portfolio />} />
-          <Route path="/" element={<RootRedirect />} />
 
           {/* Student routes */}
           <Route element={<ProtectedRoute allowedRoles={['STUDENT']} />}>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { Sidebar } from './Sidebar';
 import { useMobileNav } from '../../context/MobileNavContext';
+import { JudgeRoleSwitcher } from '../ui/JudgeRoleSwitcher';
 import clsx from 'clsx';
 
 export function AppLayout() {
@@ -18,6 +19,7 @@ export function AppLayout() {
       >
         <Outlet />
       </main>
+      <JudgeRoleSwitcher />
     </div>
   );
 }

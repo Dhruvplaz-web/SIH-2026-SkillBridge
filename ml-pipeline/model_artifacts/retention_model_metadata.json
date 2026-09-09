@@ -1,0 +1,35 @@
+{
+  "model_name": "SkillSetu-XGBoost-RetentionPredictor",
+  "version": "2.4.0",
+  "training_records": 14700,
+  "metrics": {
+    "auc_roc": 0.9629,
+    "f1_score": 0.9479,
+    "accuracy": 0.916,
+    "cv_auc_mean": 0.9679
+  },
+  "feature_importances": {
+    "competing_offers": 0.3517,
+    "skill_match_pct": 0.2753,
+    "comp_ratio": 0.2476,
+    "distance_score": 0.0673,
+    "cgpa": 0.0517,
+    "college_tier_score": 0.0065
+  },
+  "scaler_mean": [
+    1.1503,
+    0.7784,
+    71.6405,
+    8.1076,
+    1.2091,
+    0.6678
+  ],
+  "scaler_scale": [
+    0.3448,
+    0.2241,
+    15.9508,
+    0.7867,
+    1.0864,
+    0.211
+  ]
+}
