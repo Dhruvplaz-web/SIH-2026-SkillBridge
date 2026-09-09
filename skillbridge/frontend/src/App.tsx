@@ -22,22 +22,36 @@ import StudentMentorship from './pages/student/Mentorship';
 import StudentAnalytics from './pages/student/StudentAnalytics';
 import OnboardingWizard from './pages/student/OnboardingWizard';
 import SkillAssessment from './pages/student/SkillAssessment';
+import MockInterview from './pages/student/MockInterview';
+import Teammates from './pages/student/Teammates';
+import TrustLedger from './pages/student/TrustLedger';
 
 // Recruiter
 import RecruiterDashboard from './pages/recruiter/RecruiterDashboard';
 import PostOpportunity from './pages/recruiter/PostOpportunity';
 import RecruiterOpportunities from './pages/recruiter/RecruiterOpportunities';
 import InterviewScheduler from './pages/recruiter/InterviewScheduler';
+import CodingSandbox from './pages/recruiter/CodingSandbox';
 
 // Academician
 import AcademicianDashboard from './pages/academician/AcademicianDashboard';
 import AcademicianMentorship from './pages/academician/AcademicianMentorship';
 import AcademicianTraining from './pages/academician/AcademicianTraining';
 import CorporateExchange from './pages/academician/CorporateExchange';
+import CurriculumHarmonizer from './pages/academician/CurriculumHarmonizer';
+import AccreditationDossier from './pages/academician/AccreditationDossier';
+import CapstoneHub from './pages/academician/CapstoneHub';
+import GuestLectures from './pages/academician/GuestLectures';
 
 // Admin
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminUsers from './pages/admin/AdminUsers';
+import WorkforceHeatmap from './pages/admin/WorkforceHeatmap';
+import SkillShortageWarning from './pages/admin/SkillShortageWarning';
+import FraudDetector from './pages/admin/FraudDetector';
+import DigiLockerGateway from './pages/admin/DigiLockerGateway';
+import LedgerMonitor from './pages/admin/LedgerMonitor';
+
 
 // Shared
 import Notifications from './pages/shared/Notifications';
@@ -77,9 +91,11 @@ export default function App() {
               <Route path="/student/applications" element={<Applications />} />
               <Route path="/student/learning" element={<Learning />} />
               <Route path="/student/assessment" element={<SkillAssessment />} />
+              <Route path="/student/interview" element={<MockInterview />} />
+              <Route path="/student/teammates" element={<Teammates />} />
+              <Route path="/student/ledger" element={<TrustLedger />} />
               <Route path="/student/portfolio" element={<Portfolio />} />
               <Route path="/student/onboarding" element={<OnboardingWizard />} />
-              <Route path="/student/ledger" element={<Navigate to="/student/assessment" replace />} />
               <Route path="/student/mentorship" element={<StudentMentorship />} />
               <Route path="/student/analytics" element={<StudentAnalytics />} />
               <Route path="/student/notifications" element={<Notifications />} />
@@ -90,9 +106,10 @@ export default function App() {
           <Route element={<ProtectedRoute allowedRoles={['RECRUITER']} />}>
             <Route element={<AppLayout />}>
               <Route path="/recruiter" element={<RecruiterDashboard />} />
+              <Route path="/recruiter/applications" element={<RecruiterOpportunities />} />
+              <Route path="/recruiter/sandbox" element={<CodingSandbox />} />
               <Route path="/recruiter/interviews" element={<InterviewScheduler />} />
               <Route path="/recruiter/post" element={<PostOpportunity />} />
-              <Route path="/recruiter/applications" element={<RecruiterOpportunities />} />
               <Route path="/recruiter/opportunities" element={<Navigate to="/recruiter/applications" replace />} />
               <Route path="/recruiter/candidates" element={<Navigate to="/recruiter/applications" replace />} />
               <Route path="/recruiter/mentorship" element={<AcademicianMentorship />} />
@@ -105,6 +122,10 @@ export default function App() {
           <Route element={<ProtectedRoute allowedRoles={['ACADEMICIAN']} />}>
             <Route element={<AppLayout />}>
               <Route path="/academician" element={<AcademicianDashboard />} />
+              <Route path="/academician/harmonizer" element={<CurriculumHarmonizer />} />
+              <Route path="/academician/accreditation" element={<AccreditationDossier />} />
+              <Route path="/academician/capstone" element={<CapstoneHub />} />
+              <Route path="/academician/guest-lectures" element={<GuestLectures />} />
               <Route path="/academician/consultancies" element={<CorporateExchange />} />
               <Route path="/academician/students" element={<AdminUsers />} />
               <Route path="/academician/training" element={<AcademicianTraining />} />
@@ -119,6 +140,11 @@ export default function App() {
           <Route element={<ProtectedRoute allowedRoles={['ADMIN']} />}>
             <Route element={<AppLayout />}>
               <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/admin/heatmap" element={<WorkforceHeatmap />} />
+              <Route path="/admin/shortages" element={<SkillShortageWarning />} />
+              <Route path="/admin/fraud" element={<FraudDetector />} />
+              <Route path="/admin/digilocker" element={<DigiLockerGateway />} />
+              <Route path="/admin/ledger" element={<LedgerMonitor />} />
               <Route path="/admin/users" element={<AdminUsers />} />
               <Route path="/admin/opportunities" element={<RecruiterOpportunities />} />
               <Route path="/admin/applications" element={<Applications />} />

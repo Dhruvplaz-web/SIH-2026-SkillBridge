@@ -7,7 +7,8 @@ import {
   LayoutDashboard, Star, Lightbulb, Briefcase, FileText,
   BookOpen, FolderOpen, Users, LogOut, ChevronLeft, ChevronRight,
   PlusCircle, BarChart2, Bell, MessageSquare, GraduationCap, ShieldCheck,
-  Sparkles, Calendar, Handshake, Award, X
+  Sparkles, Calendar, Handshake, Award, X, Mic, Code2, MapPin, AlertTriangle,
+  ShieldAlert, Landmark
 } from 'lucide-react';
 
 interface NavItem {
@@ -20,19 +21,22 @@ const studentNav: NavItem[] = [
   { label: 'Dashboard', path: '/student', icon: LayoutDashboard },
   { label: 'Competency Matrix', path: '/student/skills', icon: Star },
   { label: 'Skill Assessments', path: '/student/assessment', icon: Award },
+  { label: 'AI Voice Interview', path: '/student/interview', icon: Mic },
+  { label: 'TrustLedger Explorer', path: '/student/ledger', icon: ShieldCheck },
+  { label: 'Hackathon Teammates', path: '/student/teammates', icon: Users },
   { label: 'Career Stepper', path: '/student/recommendations', icon: Lightbulb },
   { label: 'Opportunities & Bounties', path: '/student/opportunities', icon: Briefcase },
   { label: 'Applications', path: '/student/applications', icon: FileText },
   { label: 'Learning Hub', path: '/student/learning', icon: BookOpen },
   { label: 'Verifiable Portfolio', path: '/student/portfolio', icon: FolderOpen },
-  { label: 'Onboarding Wizard', path: '/student/onboarding', icon: Sparkles },
   { label: 'Mentorship', path: '/student/mentorship', icon: MessageSquare },
   { label: 'Notifications', path: '/student/notifications', icon: Bell },
 ];
 
 const recruiterNav: NavItem[] = [
   { label: 'Dashboard', path: '/recruiter', icon: LayoutDashboard },
-  { label: 'Applications', path: '/recruiter/applications', icon: FileText },
+  { label: 'Applications & Blind Mode', path: '/recruiter/applications', icon: FileText },
+  { label: 'Coding Sandbox', path: '/recruiter/sandbox', icon: Code2 },
   { label: 'Post Opportunity', path: '/recruiter/post', icon: PlusCircle },
   { label: 'Campus Interviews', path: '/recruiter/interviews', icon: Calendar },
   { label: 'Mentorship', path: '/recruiter/mentorship', icon: MessageSquare },
@@ -42,6 +46,10 @@ const recruiterNav: NavItem[] = [
 
 const academicianNav: NavItem[] = [
   { label: 'Dashboard', path: '/academician', icon: LayoutDashboard },
+  { label: 'Curriculum Harmonizer', path: '/academician/harmonizer', icon: Sparkles },
+  { label: 'Accreditation Dossier', path: '/academician/accreditation', icon: Award },
+  { label: 'Capstone Co-Mentorship', path: '/academician/capstone', icon: FolderOpen },
+  { label: 'Guest Lecture Exchange', path: '/academician/guest-lectures', icon: Users },
   { label: 'Corporate R&D Bids', path: '/academician/consultancies', icon: Handshake },
   { label: 'Students', path: '/academician/students', icon: GraduationCap },
   { label: 'Training Programs', path: '/academician/training', icon: BookOpen },
@@ -51,12 +59,14 @@ const academicianNav: NavItem[] = [
 ];
 
 const adminNav: NavItem[] = [
-  { label: 'Dashboard', path: '/admin', icon: LayoutDashboard },
+  { label: 'National Dashboard', path: '/admin', icon: LayoutDashboard },
+  { label: 'Workforce Heatmap', path: '/admin/heatmap', icon: MapPin },
+  { label: 'Skill Shortage Alert', path: '/admin/shortages', icon: AlertTriangle },
+  { label: 'Fraud Detector', path: '/admin/fraud', icon: ShieldAlert },
+  { label: 'DigiLocker & ABC Gateway', path: '/admin/digilocker', icon: Landmark },
+  { label: 'TrustLedger Monitor', path: '/admin/ledger', icon: ShieldCheck },
   { label: 'Users', path: '/admin/users', icon: Users },
   { label: 'Opportunities', path: '/admin/opportunities', icon: Briefcase },
-  { label: 'Applications', path: '/admin/applications', icon: FileText },
-  { label: 'Training', path: '/admin/training', icon: BookOpen },
-  { label: 'Analytics', path: '/admin/analytics', icon: BarChart2 },
   { label: 'Notifications', path: '/admin/notifications', icon: Bell },
 ];
 
