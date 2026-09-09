@@ -1,0 +1,40 @@
+{
+  "model_name": "ShortageForecaster-VAR-v2.3",
+  "algorithm": "Multivariate Vector Autoregression (VAR) with 95% Normal Bounds",
+  "mean_rmse_pct": 7.87,
+  "forecast_horizon_quarters": 4,
+  "historical_quarters": 32,
+  "domain_projections": {
+    "Semiconductor VLSI": {
+      "test_rmse": 5.76,
+      "projected_deficit_q4_2026": 76.9,
+      "confidence_lower_95": 65.6,
+      "confidence_upper_95": 88.2
+    },
+    "Generative & Edge AI": {
+      "test_rmse": 7.46,
+      "projected_deficit_q4_2026": 97.8,
+      "confidence_lower_95": 83.2,
+      "confidence_upper_95": 112.5
+    },
+    "Quantum Technologies": {
+      "test_rmse": 4.72,
+      "projected_deficit_q4_2026": 73.9,
+      "confidence_lower_95": 64.7,
+      "confidence_upper_95": 83.2
+    },
+    "Cybersecurity & Privacy": {
+      "test_rmse": 11.73,
+      "projected_deficit_q4_2026": 67.8,
+      "confidence_lower_95": 44.8,
+      "confidence_upper_95": 90.8
+    },
+    "EV & Green Energy": {
+      "test_rmse": 9.67,
+      "projected_deficit_q4_2026": 70.3,
+      "confidence_lower_95": 51.4,
+      "confidence_upper_95": 89.3
+    }
+  },
+  "data_source": "AICTE National Student Enrollment & NASSCOM Hiring Telemetry"
+}

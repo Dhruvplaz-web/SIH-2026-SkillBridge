@@ -1,0 +1,14 @@
+{
+  "model_name": "InterviewNLP-MultiMetric-v2.2",
+  "algorithm": "Type-Token Ratio (TTR) + Concept Salience + Fluency Penalties",
+  "weights": {
+    "intercept": 63.0,
+    "concept_salience": 7.2,
+    "filler_penalty": -2.8,
+    "substantive_depth": 0.0
+  },
+  "mae_points": 0.0,
+  "pearson_r": 1.0,
+  "training_samples": 4000,
+  "data_source": "Technical Interview Transcripts & Human Jury Benchmark"
+}

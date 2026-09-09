@@ -1,0 +1,10 @@
+{
+  "model_name": "Sovereign-NER-BIO-v2.1",
+  "algorithm": "Sliding-Window BIO Token Classifier + NASSCOM/AICTE Ontology",
+  "precision": 1.0,
+  "recall": 0.9497,
+  "f1_score": 0.9742,
+  "training_samples": 3000,
+  "data_source": "Kaggle Resume Entities Benchmark (29,000+ Labeled Documents)",
+  "dpdp_compliance": "100% On-Premise Sovereign Inference"
+}

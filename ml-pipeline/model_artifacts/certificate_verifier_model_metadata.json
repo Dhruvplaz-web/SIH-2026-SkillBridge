@@ -1,0 +1,11 @@
+{
+  "model_name": "CertSentinel-Entropy-v2.1",
+  "algorithm": "Shannon Character Entropy + SHA-256 Authority Proofs",
+  "optimal_entropy_threshold": 3.0,
+  "classification_accuracy": 0.9618,
+  "precision": 1.0,
+  "recall": 0.809,
+  "false_positive_rate": 0.0,
+  "training_samples": 10000,
+  "data_source": "AICTE, UGC, NPTEL, and Cloud Registries Benchmark"
+}
