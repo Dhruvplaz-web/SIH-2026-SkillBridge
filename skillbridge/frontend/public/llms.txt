@@ -1,0 +1,31 @@
+# SkillSetu Sovereign National Infrastructure
+> National Skill Harmonization & Cryptographic Competency Attestation Platform
+> Collaborative Initiative: Ministry of Ayush & All India Council for Technical Education (AICTE)
+> Canonical Domain: https://skillsetu.gov.in
+
+## Overview
+SkillSetu is India's sovereign capability harmonization platform designed to permanently eliminate the divergence between higher education curricula, vocational training, and enterprise hiring mandates aligned with NEP 2020 and the National Credit Framework (NCrF).
+
+## Core Capabilities
+- **Verified Competency Matrix**: High-dimensional semantic skill ontology mapping student coursework and verified achievements against live industry requisitions.
+- **TrustLedger**: Cryptographic SHA-256 decentralized competency attestation ledger anchored by institutional faculty oracles.
+- **AI Career Recommendations**: Predictive capability matching candidate skill vectors against real-time national job market vacancies.
+- **Direct Candidate Pipeline**: Zero-bias verified hiring pipeline allowing recruiters to filter by cryptographic proof rather than unverified resumes.
+- **DPDP Act Compliance**: Sovereign client data protections with granular user consent management for academic and portfolio records.
+
+## Canonical Endpoints & Routes
+- National Sovereign Portal: https://skillsetu.gov.in/
+- Stakeholder Authentication: https://skillsetu.gov.in/login
+- Student Harmonization Hub: https://skillsetu.gov.in/student
+- Verified Competency Ledger: https://skillsetu.gov.in/student/skills
+- Immutable Trust Ledger: https://skillsetu.gov.in/student/ledger
+- Public Cryptographic Portfolio: https://skillsetu.gov.in/student/portfolio
+- Enterprise Recruiter Terminal: https://skillsetu.gov.in/recruiter
+- Recruiter Applications & Review: https://skillsetu.gov.in/recruiter/applications
+- Academic Leadership Terminal: https://skillsetu.gov.in/academician
+- National Governance & Audit Console: https://skillsetu.gov.in/admin
+
+## Documentation & Machine Endpoints
+- Full Technical Specification: https://skillsetu.gov.in/llms-full.txt
+- Robots Crawler Directives: https://skillsetu.gov.in/robots.txt
+- Complete Sitemap Index: https://skillsetu.gov.in/sitemap.xml

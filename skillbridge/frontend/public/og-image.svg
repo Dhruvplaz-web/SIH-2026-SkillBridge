@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16" />
+      <stop offset="60%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#60a5fa" />
+    </linearGradient>
+    <linearGradient id="saffronGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ea580c" />
+      <stop offset="100%" stop-color="#f97316" />
+    </linearGradient>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="30" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="1200" height="630" fill="url(#bg)" />
+
+  <!-- Ambient Glow Orbs -->
+  <circle cx="200" cy="150" r="220" fill="#ea580c" opacity="0.15" filter="url(#glow)" />
+  <circle cx="1050" cy="450" r="280" fill="#059669" opacity="0.16" filter="url(#glow)" />
+  <circle cx="650" cy="200" r="180" fill="#2563eb" opacity="0.18" filter="url(#glow)" />
+
+  <!-- Outer Frame -->
+  <rect x="30" y="30" width="1140" height="570" rx="28" fill="none" stroke="#334155" stroke-width="2" />
+
+  <!-- Government & AICTE Top Banner Tag -->
+  <g transform="translate(80, 85)">
+    <rect width="480" height="38" rx="19" fill="#1e293b" stroke="#475569" stroke-width="1.5" />
+    <circle cx="22" cy="19" r="6" fill="#f97316" />
+    <text x="38" y="24" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">
+      MINISTRY OF AYUSH &amp; AICTE COLLABORATIVE PORTAL
+    </text>
+  </g>
+
+  <!-- Platform Brand Title -->
+  <text x="80" y="200" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="64" font-weight="900" letter-spacing="-1.5">
+    SkillSetu
+  </text>
+  <text x="350" y="200" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="800">
+    NATIONAL INFRASTRUCTURE
+  </text>
+
+  <!-- Tagline Headline -->
+  <text x="80" y="270" fill="#f8fafc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="38" font-weight="800" letter-spacing="-0.5">
+    Synchronizing Higher Education Competencies with
+  </text>
+  <text x="80" y="325" fill="url(#saffronGrad)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="38" font-weight="800">
+    Global Enterprise
+  </text>
+  <text x="430" y="325" fill="#f8fafc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="38" font-weight="800">
+    &amp;
+  </text>
+  <text x="475" y="325" fill="url(#emeraldGrad)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="38" font-weight="800">
+    Healthcare Informatics.
+  </text>
+
+  <!-- Subtitle Paragraph -->
+  <text x="80" y="390" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="400">
+    Continuous curriculum alignment, edge AI proctored benchmarking, and immutable SHA-256
+  </text>
+  <text x="80" y="420" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="400">
+    cryptographic credential attestation on TrustLedger.
+  </text>
+
+  <!-- Feature Pills -->
+  <g transform="translate(80, 480)">
+    <!-- Pill 1 -->
+    <rect x="0" y="0" width="220" height="46" rx="14" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5" />
+    <text x="20" y="28" fill="#60a5fa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700">
+      ⚡ Workforce Radar
+    </text>
+
+    <!-- Pill 2 -->
+    <rect x="240" y="0" width="230" height="46" rx="14" fill="#1e293b" stroke="#10b981" stroke-width="1.5" />
+    <text x="260" y="28" fill="#34d399" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700">
+      🛡️ TrustLedger Mainnet
+    </text>
+
+    <!-- Pill 3 -->
+    <rect x="490" y="0" width="240" height="46" rx="14" fill="#1e293b" stroke="#f97316" stroke-width="1.5" />
+    <text x="510" y="28" fill="#fb923c" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700">
+      🏛️ Curriculum Alignment
+    </text>
+  </g>
+
+  <!-- Right Visual Emblem: Cryptographic Neural Node -->
+  <g transform="translate(950, 260)">
+    <circle cx="0" cy="0" r="110" fill="#1e293b" stroke="#3b82f6" stroke-width="3" opacity="0.8" />
+    <circle cx="0" cy="0" r="80" fill="#0f172a" stroke="#10b981" stroke-width="2.5" />
+    <polygon points="0,-45 39,22 -39,22" fill="none" stroke="#f97316" stroke-width="3" />
+    <circle cx="0" cy="-45" r="8" fill="#f97316" />
+    <circle cx="39" cy="22" r="8" fill="#38bdf8" />
+    <circle cx="-39" cy="22" r="8" fill="#10b981" />
+    <circle cx="0" cy="0" r="12" fill="#ffffff" />
+  </g>
+
+  <!-- Footer URL -->
+  <text x="1090" y="550" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="700" text-anchor="end">
+    https://skillsetu.gov.in
+  </text>
+</svg>

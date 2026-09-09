@@ -1,0 +1,39 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --exec \"node node_modules/ts-node/dist/bin.js --transpile-only\" src/index.ts",
+    "build": "node node_modules/typescript/bin/tsc",
+    "start": "node dist/index.js",
+    "db:seed": "node node_modules/ts-node/dist/bin.js --transpile-only src/database/seed.ts",
+    "test": "echo no tests"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^7.10.0",
+    "@types/multer": "^2.2.0",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-validator": "^7.3.2",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.3.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^26.4.0",
+    "nodemon": "^3.1.14",
+    "prisma": "^8.0.0-rc.12",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}

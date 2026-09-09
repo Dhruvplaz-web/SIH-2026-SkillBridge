@@ -1,0 +1,30 @@
+# SkillSetu Sovereign National Infrastructure - robots.txt
+# https://skillsetu.gov.in/
+
+User-agent: *
+Allow: /
+Allow: /login
+Allow: /ledger
+Disallow: /api/
+Disallow: /admin/telemetry/private/
+
+# AI Crawlers & LLM Agents
+User-agent: GPTBot
+Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: ClaudeBot
+Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: PerplexityBot
+Allow: /
+Allow: /llms.txt
+
+User-agent: Applebot
+Allow: /
+
+# Sitemap Index
+Sitemap: https://skillsetu.gov.in/sitemap.xml

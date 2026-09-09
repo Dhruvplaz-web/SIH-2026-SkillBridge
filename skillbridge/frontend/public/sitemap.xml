@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  
+  <!-- Homepage: Sovereign National Portal -->
+  <url>
+    <loc>https://skillsetu.gov.in/</loc>
+    <lastmod>2026-09-04T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Stakeholder Authentication Gateway -->
+  <url>
+    <loc>https://skillsetu.gov.in/login</loc>
+    <lastmod>2026-09-04T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Institutional Registration -->
+  <url>
+    <loc>https://skillsetu.gov.in/register</loc>
+    <lastmod>2026-09-04T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Student Harmonization Hub -->
+  <url>
+    <loc>https://skillsetu.gov.in/student</loc>
+    <lastmod>2026-09-04T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Student Verified Skills -->
+  <url>
+    <loc>https://skillsetu.gov.in/student/skills</loc>
+    <lastmod>2026-09-04T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Student Opportunities & Internships -->
+  <url>
+    <loc>https://skillsetu.gov.in/student/opportunities</loc>
+    <lastmod>2026-09-04T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Cryptographic Trust Ledger -->
+  <url>
+    <loc>https://skillsetu.gov.in/student/ledger</loc>
+    <lastmod>2026-09-04T00:00:00+00:00</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Recruiter Enterprise Terminal -->
+  <url>
+    <loc>https://skillsetu.gov.in/recruiter</loc>
+    <lastmod>2026-09-04T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Recruiter Applications -->
+  <url>
+    <loc>https://skillsetu.gov.in/recruiter/applications</loc>
+    <lastmod>2026-09-04T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Academician Leadership Terminal -->
+  <url>
+    <loc>https://skillsetu.gov.in/academician</loc>
+    <lastmod>2026-09-04T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Admin Governance & Audit Console -->
+  <url>
+    <loc>https://skillsetu.gov.in/admin</loc>
+    <lastmod>2026-09-04T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>

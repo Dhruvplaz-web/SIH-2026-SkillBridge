@@ -1,0 +1,43 @@
+services:
+  backend:
+    image: skillbridge-backend:latest
+    build:
+      context: ./skillbridge/backend
+      dockerfile: Dockerfile
+    container_name: skillbridge-backend
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - NODE_ENV=production
+      - DATABASE_URL=file:./prisma/dev.db
+      - JWT_SECRET=skillbridge-super-secret-jwt-key-2024-change-in-production
+      - JWT_EXPIRES_IN=7d
+      - FRONTEND_URL=http://localhost
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-your_gemini_api_key_here}
+      - GROQ_API_KEY=${GROQ_API_KEY:-your_groq_api_key_here}
+    volumes:
+      - ./skillbridge/backend/prisma:/app/prisma
+      - ./skillbridge/backend/uploads:/app/uploads
+
+  frontend:
+    image: skillbridge-frontend:latest
+    build:
+      context: ./skillbridge/frontend
+      dockerfile: Dockerfile
+    container_name: skillbridge-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+  # Instant Public HTTPS Tunnel (Exposes app online without Render, Vercel, or port forwarding)
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: skillbridge-tunnel
+    restart: unless-stopped
+    command: tunnel --no-autoupdate --url http://frontend:80
+    depends_on:
+      - frontend

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Rounded Shield Background with Deep Navy Gradient -->
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e3a8a" />
+    </linearGradient>
+    <linearGradient id="saffronGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f97316" />
+      <stop offset="100%" stop-color="#fb923c" />
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+  </defs>
+
+  <rect width="64" height="64" rx="16" fill="url(#bgGrad)" />
+  <rect x="1" y="1" width="62" height="62" rx="15" stroke="#3b82f6" stroke-opacity="0.3" stroke-width="1.5" />
+
+  <!-- Neural Arch / Bridge Symbolizing 'Setu' (Bridge) -->
+  <!-- Top Saffron Arch -->
+  <path d="M16 28 C22 18, 42 18, 48 28" stroke="url(#saffronGrad)" stroke-width="4" stroke-linecap="round" fill="none" />
+  
+  <!-- Middle White Landmark Pillar Nodes -->
+  <circle cx="20" cy="32" r="3.5" fill="#ffffff" />
+  <circle cx="32" cy="24" r="4" fill="#38bdf8" />
+  <circle cx="44" cy="32" r="3.5" fill="#ffffff" />
+  
+  <!-- Interconnecting Circuit Bridges -->
+  <line x1="20" y1="32" x2="32" y2="24" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+  <line x1="32" y1="24" x2="44" y2="32" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+  <line x1="20" y1="32" x2="32" y2="40" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+  <line x1="32" y1="40" x2="44" y2="32" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+
+  <!-- Center Core Node -->
+  <circle cx="32" cy="40" r="3.5" fill="#34d399" />
+
+  <!-- Bottom Emerald Health / Foundation Arch -->
+  <path d="M16 38 C22 48, 42 48, 48 38" stroke="url(#greenGrad)" stroke-width="4" stroke-linecap="round" fill="none" />
+</svg>

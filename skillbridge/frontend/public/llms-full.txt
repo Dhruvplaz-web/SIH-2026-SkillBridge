@@ -1,0 +1,26 @@
+# SkillSetu Full Technical Architecture Specification (llms-full.txt)
+> National Sovereign Skill Harmonization Platform
+> Standards: National Skills Qualifications Framework (NSQF Levels 5-7), Ayush ABDM FHIR Standards, AICTE Model Curricula
+
+## System Architecture
+SkillSetu operates a reactive, multi-sided platform built upon:
+1. **Frontend**: React 18, Vite 5, Tailwind CSS, Framer Motion, Recharts, Lucide Icons.
+2. **Backend**: FastAPI, Python 3.10+, Uvicorn ASGI server.
+3. **AI Pipeline**: Multi-model routing (Google Gemini 2.5 Flash, DeepSeek-R1, Mistral, Ollama) with deterministic cosine similarity fallback for sub-millisecond execution.
+4. **Ledger**: Web Crypto API native SHA-256 block creation with faculty oracle signatures.
+
+## Stakeholder Roles & Access Levels
+1. **Candidate / Scholar (Student)**:
+   - Technology Stream: Repository intake, language breakdown, radar analysis, gap diagnostics, gamified skill benchmark badges.
+   - Clinical & Health Sciences Stream: NABH/ABDM clinical logbook ingestion, de-identified patient case recording, CME requirements.
+2. **Enterprise Recruiter (Industry)**:
+   - Candidate discovery, NSQF filtering, fast-track shortlist pipeline, 1-click verified cryptographic dossier drawers, job requisition creation.
+3. **Academic Council Oracle (Academician)**:
+   - Syllabus vs hiring mandate gap audit, curriculum amendment proposals, student capstone SHA-256 verification.
+4. **Institutional Dean / TPO (Admin)**:
+   - Cohort placement readiness heatmap (CS, IT, Mech, Civil, Ayush across S1-S8), action package dispatch (Mock Interviews, Fast-Track Certifications), statutory accreditation audit export.
+
+## Security & Compliance
+- **DPDP Act 2023**: Zero storage of unscrubbed PII.
+- **Cryptographic Hashing**: Salted SHA-256 with timestamp and oracle authority public key bindings.
+- **Biometric Proctoring**: Purely client-side edge computer vision. No raw video transmitted to external servers.

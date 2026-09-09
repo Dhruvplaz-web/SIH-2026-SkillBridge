@@ -1,0 +1,33 @@
+# IDE & Editors
+/.vscode
+/.idea
+*.swp
+*.swo
+
+# Environment variables & secrets (Never push actual keys to public GitHub)
+.env
+.env.local
+.env.*.local
+*.env
+
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build artifacts
+dist/
+build/
+coverage/
+
+# Database runtime & temporary lock files
+*.db-wal
+*.db-shm
+*.db-journal
+
+# Logs & scratch scripts
+*.log
+scratch/
+.system_generated/
+cloudflared.exe
