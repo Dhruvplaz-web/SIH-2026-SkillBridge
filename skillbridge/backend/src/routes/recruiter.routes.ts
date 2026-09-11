@@ -7,7 +7,9 @@ import {
   mintLetterOfIntent,
   getLettersOfIntent,
   scheduleCampusInterview,
-  getCampusInterviews
+  getCampusInterviews,
+  getCandidateCodingSubmissions,
+  assignCodingChallengeToCandidate,
 } from '../controllers/recruiterFeatures.controller';
 
 const router = Router();
@@ -27,5 +29,9 @@ router.get('/loi', getLettersOfIntent);
 // 4. Automated Campus Interview Auto-Scheduler
 router.post('/interviews/schedule', scheduleCampusInterview);
 router.get('/interviews', getCampusInterviews);
+
+// 5. Candidate Coding Submissions & Assessment Assignments
+router.get('/coding-submissions', getCandidateCodingSubmissions);
+router.post('/coding-invites', assignCodingChallengeToCandidate);
 
 export default router;

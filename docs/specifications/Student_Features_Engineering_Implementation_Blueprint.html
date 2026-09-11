@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SkillSetu - Complete Student Features Master Architecture & Implementation Blueprint</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 11mm 11mm 11mm 11mm;
+      @bottom-right {
+        content: "Page " counter(page);
+      }
+    }
+    
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #1e293b;
+      line-height: 1.4;
+      font-size: 8pt;
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+    }
+
+    h1, h2, h3, h4 {
+      color: #0f172a;
+      font-weight: 700;
+      margin-top: 0;
+    }
+
+    .header-box {
+      border: 2px solid #1e40af;
+      border-radius: 6px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, #eff6ff 0%, #f8fafc 100%);
+      margin-bottom: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #cbd5e1;
+      padding-bottom: 4px;
+      margin-bottom: 4px;
+    }
+
+    .badge-sih {
+      background: #1e40af;
+      color: #ffffff;
+      font-size: 6.5pt;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-guide {
+      background: #059669;
+      color: #ffffff;
+      font-size: 6.5pt;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    .title {
+      font-size: 13pt;
+      color: #0f172a;
+      margin: 1px 0;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: 8pt;
+      color: #475569;
+      margin-bottom: 4px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+      font-size: 6.8pt;
+      color: #334155;
+    }
+
+    .meta-item strong {
+      display: block;
+      color: #0f172a;
+      font-size: 7.2pt;
+    }
+
+    /* Section Styling */
+    .section-title {
+      font-size: 9.5pt;
+      color: #1e3a8a;
+      border-bottom: 2px solid #2563eb;
+      padding-bottom: 2px;
+      margin-top: 10px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-title span.tag {
+      background: #dbeafe;
+      color: #1e40af;
+      font-size: 6pt;
+      padding: 1px 4px;
+      border-radius: 2px;
+      font-weight: 600;
+    }
+
+    /* Onboarding Flow Visual */
+    .flow-container {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 5px;
+      padding: 6px 8px;
+      margin-bottom: 8px;
+    }
+
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 4px;
+      margin-top: 4px;
+    }
+
+    .flow-step {
+      background: #ffffff;
+      border: 1px solid #94a3b8;
+      border-top: 3px solid #2563eb;
+      border-radius: 4px;
+      padding: 4px 5px;
+      font-size: 6.5pt;
+      position: relative;
+    }
+
+    .flow-step strong {
+      display: block;
+      color: #0f172a;
+      font-size: 7pt;
+      margin-bottom: 1px;
+    }
+
+    .flow-step-num {
+      position: absolute;
+      top: -6px;
+      right: 4px;
+      background: #2563eb;
+      color: #ffffff;
+      font-size: 5.5pt;
+      font-weight: 700;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .trust-box {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-left: 3px solid #059669;
+      border-radius: 5px;
+      padding: 5px 8px;
+      margin-bottom: 8px;
+      font-size: 7pt;
+    }
+
+    .trust-box strong {
+      color: #065f46;
+      font-size: 7.5pt;
+      display: block;
+      margin-bottom: 1px;
+    }
+
+    /* Feature Deep Dive Cards */
+    .feature-card {
+      border: 1px solid #e2e8f0;
+      border-left: 3px solid #2563eb;
+      border-radius: 5px;
+      background: #ffffff;
+      padding: 6px 8px;
+      margin-bottom: 6px;
+      page-break-inside: avoid;
+    }
+
+    .feature-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3px;
+      padding-bottom: 2px;
+      border-bottom: 1px dashed #e2e8f0;
+    }
+
+    .feature-title {
+      font-weight: 700;
+      color: #0f172a;
+      font-size: 8pt;
+    }
+
+    .feature-tag {
+      background: #f1f5f9;
+      color: #475569;
+      font-size: 6pt;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+
+    .sub-section {
+      margin-top: 3px;
+      font-size: 7.2pt;
+    }
+
+    .sub-section-title {
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 1px;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 7.4pt;
+    }
+
+    .sub-section-title::before {
+      content: "▪";
+      color: #2563eb;
+      font-size: 8pt;
+    }
+
+    ul {
+      margin: 1px 0 3px 10px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 1.5px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 3px 0;
+      font-size: 6.8pt;
+    }
+
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 2.5px 4px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f8fafc;
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    .ui-tip {
+      background: #fdf4ff;
+      border: 1px solid #f0abfc;
+      border-radius: 3px;
+      padding: 2.5px 5px;
+      margin: 2px 0;
+      font-size: 6.8pt;
+      color: #86198f;
+    }
+
+    .phase-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      margin: 5px 0;
+    }
+
+    .phase-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      background: #ffffff;
+      padding: 4px 6px;
+      page-break-inside: avoid;
+    }
+
+    .phase-header {
+      font-weight: 700;
+      font-size: 7.2pt;
+      margin-bottom: 2px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .phase-badge {
+      font-size: 6pt;
+      padding: 1px 3px;
+      border-radius: 2px;
+      font-weight: 700;
+    }
+    .p1 { background: #dcfce7; color: #15803d; }
+    .p2 { background: #dbeafe; color: #1d4ed8; }
+    .p3 { background: #fef3c7; color: #b45309; }
+    .p4 { background: #f3e8ff; color: #7e22ce; }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 6.5pt;
+      color: #94a3b8;
+      margin-top: 8px;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header-box">
+    <div class="header-top">
+      <span class="badge-sih">Smart India Hackathon 2026 &bull; Technical Architecture</span>
+      <span class="badge-guide">Comprehensive Student Master Specification</span>
+    </div>
+    <div class="title">SkillSetu: Complete Student Feature Architecture & Engineering Blueprint</div>
+    <div class="subtitle">Detailed Specification for Developers: All Core, Onboarding, Anti-Fraud, and Next-Gen Student Features in a Non-Breaking, Non-Cramped Modular Design</div>
+    <div class="meta-grid">
+      <div class="meta-item"><strong>Target Platform:</strong> SkillSetu Core Enterprise</div>
+      <div class="meta-item"><strong>Privacy Standard:</strong> 100% Server-Side AI (Zero Student Keys)</div>
+      <div class="meta-item"><strong>Verification Tech:</strong> Multimodal Vision AI + QR Resolver</div>
+      <div class="meta-item"><strong>UI Architecture:</strong> Uncluttered Sub-Routing & Slide-Drawers</div>
+    </div>
+  </div>
+
+  <!-- ZERO-TRUST CLIENT & ZERO-CRASH PRINCIPLE -->
+  <div class="trust-box">
+    <strong>🔒 Core Architecture Mandate: Zero-Trust Client Model & Zero-Overload UI</strong>
+    1. <strong>No Student API Keys Ever:</strong> All AI processing runs 100% server-side via managed Gemini 2.5 Flash and local Python workers. Students never supply private keys, eliminating security fears.<br>
+    2. <strong>Zero-Overload UI Strategy:</strong> Never cram widgets onto the main Dashboard. Advanced tools live in dedicated sub-routes or slide-over drawers so the interface remains clean, fast, and accessible.<br>
+    3. <strong>Fail-Soft Reliability:</strong> If any AI or web scraping worker times out, the system falls back to cached local rules without breaking React boundaries or throwing 500 errors.
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- PART 1: FIRST-LOGIN ONBOARDING & CERTIFICATE VERIFICATION ENGINE -->
+  <!-- ========================================================================= -->
+  <div class="section-title">
+    <span>Part 1: The First-Login Onboarding & AI Certificate Verification Engine</span>
+    <span class="tag">Onboarding Core</span>
+  </div>
+
+  <!-- ONBOARDING FLOWCHART -->
+  <div class="flow-container">
+    <div style="font-size: 7.2pt; color: #334155; margin-bottom: 3px;">
+      <strong>The 5-Step First-Login Onboarding & Verification Lifecycle:</strong>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <span class="flow-step-num">1</span>
+        <strong>Initial Login</strong>
+        Student signs in via college credentials/OAuth. System detects <code>is_onboarded: false</code>.
+      </div>
+      <div class="flow-step">
+        <span class="flow-step-num">2</span>
+        <strong>Immediate Resume Ingestion</strong>
+        Prompts drag-and-drop resume upload (PDF). Local server parses text in &lt;100ms with DPDP PII masking.
+      </div>
+      <div class="flow-step">
+        <span class="flow-step-num">3</span>
+        <strong>AI Profile Synthesis</strong>
+        Server AI synthesizes profile: extracts skills, education, GitHub repos, and initial proficiency levels.
+      </div>
+      <div class="flow-step">
+        <span class="flow-step-num">4</span>
+        <strong>Review & Verification Modal</strong>
+        Student reviews profile: adds missing achievements, projects, and uploads certificates for AI credibility check.
+      </div>
+      <div class="flow-step">
+        <span class="flow-step-num">5</span>
+        <strong>Landing Page Launch</strong>
+        Student is redirected to Dashboard with populated match rings, verified badges, and personalized opportunities!
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURE 1: RESUME ONBOARDING WIZARD -->
+  <div class="feature-card">
+    <div class="feature-head">
+      <span class="feature-title">Feature 1: First-Login Resume Ingestion & Profile Synthesis Wizard</span>
+      <span class="feature-tag">Onboarding Wizard &bull; Route: /student/onboarding</span>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Objective & User Flow</div>
+      Immediately upon first login, new students are greeted with a clean 3-step modal wizard. Instead of filling tedious forms, the student uploads their existing PDF resume. The server extracts the text, sends a sanitized prompt to Gemini 2.5 Flash, and returns a structured profile JSON. The student verifies details and proceeds.
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Developer Implementation Details</div>
+      <ul>
+        <li><strong>Trigger:</strong> In <code>AuthContext.jsx</code>, check <code>user.onboarded</code>. If false, route to <code>/student/onboarding</code>.</li>
+        <li><strong>Backend Controller:</strong> <code>POST /api/student/onboard/parse-resume</code> parses PDF using <code>pypdf</code>, runs the DPDP PII scrubber, and calls Gemini with strict Pydantic schema validation.</li>
+        <li><strong>Zero-Crash Safety:</strong> If PDF parsing fails (e.g. image-only PDF), the wizard gracefully provides a pre-filled manual fallback form without throwing errors.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FEATURE 2: AI CERTIFICATE CREDIBILITY ENGINE -->
+  <div class="feature-card" style="border-left-color: #059669;">
+    <div class="feature-head">
+      <span class="feature-title">Feature 2: Dedicated AI Certificate Credibility & Anti-Forgery Verification Engine</span>
+      <span class="feature-tag">3-Layer Verification Pipeline</span>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">The Three-Layer Credibility Pipeline (How It Detects Forgeries)</div>
+      <ol style="margin: 1px 0 3px 12px; padding: 0;">
+        <li><strong>Layer 1: Multimodal Vision AI (Gemini 2.5 Flash Vision / LayoutLMv3):</strong> Inspects layout, official issuing typography, recognized logo vectors, standardized course codes, and authorized digital signatures (NPTEL, Coursera, AWS, edX, IITs). Flags distorted seals or template mismatches.</li>
+        <li><strong>Layer 2: PDF XMP Metadata & Splicing Anomaly Detection (Python <code>pikepdf</code> & OpenCV):</strong> Inspects binary metadata to flag documents modified by editing software (Photoshop, Canva, Illustrator), detects mismatched font layers (where a student edits the name over someone else's certificate), and catches altered date strings.</li>
+        <li><strong>Layer 3: Automated QR Code & Registry Webhook Resolver (Python <code>pyzbar</code>):</strong> Decodes embedded QR codes or verification URLs (e.g., <code>nptel.ac.in/noc/Ecertificate</code>) and queries the issuing academy's public API to confirm matching student names and completion grades.</li>
+      </ol>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Confidence Tiers & TrustLedger Action</div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%;">Confidence</th>
+            <th style="width: 25%;">Assigned Status</th>
+            <th style="width: 55%;">System Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>&ge; 90%</strong></td>
+            <td><span style="background: #dcfce7; color: #15803d; padding: 1px 4px; border-radius: 2px; font-weight: 700;">VERIFIED</span></td>
+            <td>Displays green verified badge on portfolio; mints SHA-256 certificate block to TrustLedger.</td>
+          </tr>
+          <tr>
+            <td><strong>70% – 89%</strong></td>
+            <td><span style="background: #fef3c7; color: #b45309; padding: 1px 4px; border-radius: 2px; font-weight: 700;">PENDING_AUDIT</span></td>
+            <td>Saved as self-claim until secondary automated registry webhook confirmation.</td>
+          </tr>
+          <tr>
+            <td><strong>&lt; 70% / Tampered</strong></td>
+            <td><span style="background: #fee2e2; color: #991b1b; padding: 1px 4px; border-radius: 2px; font-weight: 700;">REJECTED / FORGED</span></td>
+            <td>Rejected with detailed alert: <em>"Document failed metadata integrity check (Font layer splice detected)."</em></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- ========================================================================= -->
+  <!-- PART 2: CORE PLATFORM STUDENT FEATURES -->
+  <!-- ========================================================================= -->
+  <div class="section-title">
+    <span>Part 2: Core Platform Student Features (Current Architecture)</span>
+    <span class="tag">Existing Core Suite</span>
+  </div>
+
+  <!-- FEATURE 3: DASHBOARD & RADAR -->
+  <div class="feature-card">
+    <div class="feature-head">
+      <span class="feature-title">Feature 3: Student Analytics Dashboard & 5-Axis Competency Radar</span>
+      <span class="feature-tag">Route: /student/dashboard</span>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Objective & Data Representation</div>
+      Acts as the student’s centralized mission control. Features a responsive <strong>5-Axis Competency Radar Chart</strong> (using Recharts) mapping student verified skills against industry 90th-percentile standards across Core CS, System Design, Cloud/DevOps, Data/AI, and Problem Solving. Includes high-priority action cards and live notification telemetry.
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Developer Specs & UI Strategy</div>
+      <ul>
+        <li><strong>Tech Stack:</strong> React 18, Recharts <code>&lt;RadarChart&gt;</code>, Framer Motion for entry stagger.</li>
+        <li><strong>Backend:</strong> <code>GET /api/analytics/student</code> aggregates user skills, pending applications, and top matching opportunities in &lt;30ms.</li>
+        <li><strong>Uncluttered UI:</strong> Fixed 3-column summary layout: Key Stats on top, Radar Chart on left, Priority Opportunities on right.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FEATURE 4: PROCTORED ASSESSMENT SUITE -->
+  <div class="feature-card">
+    <div class="feature-head">
+      <span class="feature-title">Feature 4: Proctored Assessment Suite & Hardware Anti-Cheat Engine</span>
+      <span class="feature-tag">Route: /student/assessment</span>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Objective & Anti-Cheat Hardening</div>
+      Timed, standardized skill diagnostic quizzes that verify self-claimed competencies. Enforces native browser fullscreen lockdown (`requestFullscreen()`), listens for window blur/tab switches (deducting integrity points), disables right-click copy-paste, and displays a live <strong>Camera Proctor HUD</strong> with an animated scanning reticle.
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Developer Specs & Ledger Minting</div>
+      <ul>
+        <li><strong>Tech Stack:</strong> HTML5 Fullscreen API, WebRTC camera feed via <code>&lt;video&gt;</code> element, client-side event listeners for visibility change.</li>
+        <li><strong>Backend:</strong> <code>POST /api/assessments/submit</code> calculates score, verifies integrity violations, and mints an NSQF Certified Badge (Gold/Silver/Bronze) with an immutable SHA-256 block hash.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FEATURE 5: COMPETENCY MATRIX -->
+  <div class="feature-card">
+    <div class="feature-head">
+      <span class="feature-title">Feature 5: Interactive Competency Matrix & Comparative Score Bars</span>
+      <span class="feature-tag">Route: /student/skills</span>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Objective & Anti-Inflation Visual Audit</div>
+      Organizes skills into a <strong>5-Tier Mastery Hierarchy</strong>: Master (L5), Expert (L4), Advanced (L3), Intermediate (L2), Beginner (L1). Features <strong>Visual Side-by-Side Progress Bars</strong> contrasting candidate self-rating against proctored verified scores, exposing resume inflation to recruiters instantly.
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Developer Specs</div>
+      <ul>
+        <li><strong>Tech Stack:</strong> Tailwind CSS dual-fill animated progress bars, Lucide verification checkmarks, 1-click CTA to benchmark unverified skills.</li>
+        <li><strong>Backend:</strong> <code>GET /api/skills/matrix</code> returns structured breakdown: <code>{ skill_name, claimed_level, verified_score, benchmark_status }</code>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FEATURE 6: PUBLIC VERIFIABLE PORTFOLIO -->
+  <div class="feature-card">
+    <div class="feature-head">
+      <span class="feature-title">Feature 6: Public Verifiable Digital Portfolio with Dynamic QR & GitHub Telemetry</span>
+      <span class="feature-tag">Route: /portfolio/:id</span>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Objective & Credential Sharing</div>
+      A public vanity URL (`/portfolio/aarav`) accessible to any recruiter without login. Displays verified TrustLedger badges, verified certifications, honors, printable CSS for PDF dossier generation, and two major features:
+      <ul>
+        <li><strong>Dynamic QR Code:</strong> Renders an on-screen SVG QR code linking to the candidate's TrustLedger ledger block.</li>
+        <li><strong>Live GitHub Telemetry:</strong> Real-time API integration fetching top repositories, commit frequency, star counts, and primary coding languages.</li>
+      </ul>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Developer Specs</div>
+      <ul>
+        <li><strong>Tech Stack:</strong> <code>qrcode.react</code> for client-side QR generation, GitHub REST API client, print media CSS (<code>@media print</code>).</li>
+        <li><strong>Backend:</strong> <code>GET /api/portfolio/:id</code> returns sanitized public data, caching GitHub telemetry for 1 hour to prevent rate-limiting.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FEATURE 7: OPPORTUNITIES & 1-CLICK APPLY -->
+  <div class="feature-card">
+    <div class="feature-head">
+      <span class="feature-title">Feature 7: Opportunities Hub & 1-Click TrustLedger Application</span>
+      <span class="feature-tag">Route: /student/opportunities</span>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Objective & Explainable Match Scores</div>
+      Allows students to discover technical internships and graduate roles. Each opening displays a circular <strong>Match Score Ring (0–100%)</strong>. Clicking an opportunity reveals an <strong>Explainable Breakdown</strong>: matching required skills in green, missing skills in red, stipend, location, and a <strong>1-Click Apply</strong> button anchoring the application hash to the TrustLedger.
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Developer Specs</div>
+      <ul>
+        <li><strong>Tech Stack:</strong> Reusable SVG <code>&lt;MatchScoreRing&gt;</code>, filter pills (&gt;90%, &gt;80%, Remote), search debounce.</li>
+        <li><strong>Backend:</strong> <code>GET /api/opportunities</code> calculates real-time match scores via deterministic vector engine in &lt;45ms.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- FEATURE 8: APPLICATION TRACKING KANBAN -->
+  <div class="feature-card">
+    <div class="feature-head">
+      <span class="feature-title">Feature 8: Real-Time Application Tracking Pipeline</span>
+      <span class="feature-tag">Route: /student/applications</span>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Objective & Pipeline Transparency</div>
+      Students track all submitted applications across a structured 4-stage Kanban lifecycle: <code>APPLIED</code> &rarr; <code>UNDER REVIEW</code> &rarr; <code>SHORTLISTED</code> &rarr; <code>SELECTED</code>. Features real-time recruiter feedback, interview schedule notices, and the SHA-256 transaction receipt for each submission.
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Developer Specs</div>
+      <ul>
+        <li><strong>Tech Stack:</strong> Tailwind card columns, Lucide status badges, real-time polling or WebSocket notifications.</li>
+        <li><strong>Backend:</strong> <code>GET /api/applications/my</code> returns sorted application history with recruiter decision notes.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FEATURE 9: MILESTONE CAREER STEPPER -->
+  <div class="feature-card">
+    <div class="feature-head">
+      <span class="feature-title">Feature 9: Multi-Stage Milestone Stepper & Match Score Leap Predictor</span>
+      <span class="feature-tag">Route: /student/recommendations</span>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Objective & Predictive Upskilling</div>
+      Eliminates rejection dead-ends. When a student has a low match score for an aspirational job role, the system displays a visual <strong>Milestone Stepper</strong>: <em>1. Bridge Course &rarr; 2. Proctored Quiz &rarr; 3. Mentorship Advisory &rarr; 4. 1-Click Apply</em>. Displays a <strong>Projected Match Leap Predictor</strong> (e.g. <em>"Complete this AWS module to leap your match score from 76% to 88%!"</em>).
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Developer Specs</div>
+      <ul>
+        <li><strong>Tech Stack:</strong> Framer Motion horizontal stepper bar, animated numeric counter for projected score leaps.</li>
+        <li><strong>Backend:</strong> Computes skill gap vector $\Delta_s = \text{Demand} - \text{Profile}$ and recalculates hypothetical match scores.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FEATURE 10: LEARNING HUB BUDGET FILTERS -->
+  <div class="feature-card">
+    <div class="feature-head">
+      <span class="feature-title">Feature 10: Continuing Learning Hub with Interactive Budget & Grant Filters</span>
+      <span class="feature-tag">Route: /student/learning</span>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Objective & Financial Accessibility</div>
+      Curates verified open and accredited technical training courses. Features an <strong>Interactive Budget Filter</strong> ensuring students from Tier-2 and Tier-3 colleges never hit commercial paywalls:
+      <strong>100% Free / Govt-Funded (₹0)</strong> &bull; <strong>Micro-Boosters (&lt;₹1,000)</strong> &bull; <strong>Sponsored & Grant Modules</strong>.
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Developer Specs</div>
+      <ul>
+        <li><strong>Tech Stack:</strong> 3-column responsive course cards with issuing authority badges (NPTEL, SWAYAM, MIT OCW, AWS Skill Builder).</li>
+        <li><strong>Backend:</strong> <code>GET /api/training-programs</code> with query parameters <code>?budget=free</code> or <code>?budget=budget</code>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FEATURE 11: MENTORSHIP HUB -->
+  <div class="feature-card">
+    <div class="feature-head">
+      <span class="feature-title">Feature 11: Academic & Industry 1-on-1 Mentorship Hub</span>
+      <span class="feature-tag">Route: /student/mentorship</span>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Objective & Bilateral Guidance</div>
+      Connects students with verified senior software architects, technical leads, and university deans. Students view mentor specializations, remaining weekly slots, and submit structured mentorship guidance requests with calendar scheduling.
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Developer Specs</div>
+      <ul>
+        <li><strong>Tech Stack:</strong> Interactive session request modal, slot badge counters, status indicator (<code>PENDING</code> / <code>ACCEPTED</code>).</li>
+        <li><strong>Backend:</strong> <code>POST /api/mentorship/request</code>, <code>GET /api/mentorship/requests</code> with in-portal notification triggers.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- PART 3: 5 NEXT-GEN RECOMMENDED STUDENT INNOVATIONS -->
+  <!-- ========================================================================= -->
+  <div class="section-title">
+    <span>Part 3: 5 Next-Gen Recommended Innovations for Students</span>
+    <span class="tag">Roadmap Additions</span>
+  </div>
+
+  <!-- FEATURE 12: AUTONOMOUS COURSE SCOUT -->
+  <div class="feature-card">
+    <div class="feature-head">
+      <span class="feature-title">Feature 12: Autonomous Server-Side AI Course Scout & Real-Time Skill Agent</span>
+      <span class="feature-tag">100% Server-Side &bull; Route: /student/learning</span>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Objective & Implementation</div>
+      An asynchronous background worker (FastAPI background task / Python <code>APScheduler</code>) periodically crawls accredited national repositories (NPTEL, SWAYAM, MIT OCW, Coursera, AWS Skill Builder) for newly released courses and updated syllabus versions. Matches missing student skills automatically and pushes dynamic alerts without needing any student API keys.
+    </div>
+  </div>
+
+  <!-- FEATURE 13: MOCK INTERVIEW SIMULATOR -->
+  <div class="feature-card">
+    <div class="feature-head">
+      <span class="feature-title">Feature 13: AI Voice & Audio/Video Mock Technical Interview Simulator</span>
+      <span class="feature-tag">Skill Preparedness &bull; Route: /student/mock-interview</span>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Objective & Implementation</div>
+      Uses native browser <strong>Web Speech API</strong> (`SpeechRecognition` & `SpeechSynthesis`) for zero-latency client-side voice processing. An AI avatar conducts a 5-question technical and system-design interview. Transcriptions are sent to server Gemini AI, scoring Technical Accuracy (50%), Keyword Coverage (25%), and Communication Clarity (25%). Camera HUD monitors posture and eye-contact.
+    </div>
+  </div>
+
+  <!-- FEATURE 14: DYNAMIC ATS RESUME SCORER -->
+  <div class="feature-card">
+    <div class="feature-head">
+      <span class="feature-title">Feature 14: Dynamic ATS Resume Scorer & 1-Click Keyword Tailor</span>
+      <span class="feature-tag">Inside Opportunities Modal Drawer</span>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Objective & Implementation</div>
+      An *"Audit Resume for this Role"* button inside the opportunity detail modal opens an elegant slide-over drawer without leaving the page. Extracts text via <code>pypdf</code> in &lt;100ms, runs PII redaction, compares against required keywords, and displays an animated ATS score ring with exact phrasing suggestions.
+    </div>
+  </div>
+
+  <!-- FEATURE 15: TEAMMATES & BOUNTIES -->
+  <div class="feature-card">
+    <div class="feature-head">
+      <span class="feature-title">Feature 15 & 16: Hackathon Teammate Matcher & Micro-Internship Bounty Hub</span>
+      <span class="feature-tag">Community & Verified Micro-Credentials</span>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Objective & Implementation</div>
+      <ul>
+        <li><strong>Teammate Matcher (<code>/student/teams</code>):</strong> Algorithmic set-complement engine matching project vacancies with students possessing complementary skills across universities (React Dev + Backend Python + Cloud DevOps).</li>
+        <li><strong>Micro-Bounties Toggle:</strong> Embedded directly inside <code>Opportunities.jsx</code> as a simple toggle: <strong>[ Full Internships | 2-Week Micro-Bounties ]</strong>. Bounties require GitHub PR links and award verified badges on TrustLedger.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- ========================================================================= -->
+  <!-- PART 4: 4-PHASE SAFE IMPLEMENTATION ROADMAP & PRODUCTION TESTING -->
+  <!-- ========================================================================= -->
+  <div class="section-title">
+    <span>Part 4: The 4-Phase Safe Implementation Timeline & Sanity Verification</span>
+    <span class="tag">Engineering Delivery</span>
+  </div>
+
+  <div class="phase-grid">
+    <div class="phase-card">
+      <div class="phase-header">
+        <span style="color: #15803d;">Phase 1: Schemas, OCR & Router Stubs</span>
+        <span class="phase-badge p1">Week 1: Zero Risk</span>
+      </div>
+      <div style="font-size: 6.8pt; color: #475569;">
+        Build independent database tables (<code>certificates</code>, <code>dynamic_courses</code>, <code>bounties</code>) and FastAPI router stubs. Implement local PDF text parser and QR code resolver. Test endpoints in Swagger UI (<code>/api/docs</code>).
+      </div>
+    </div>
+
+    <div class="phase-card">
+      <div class="phase-header">
+        <span style="color: #1d4ed8;">Phase 2: Onboarding Wizard & UI Shells</span>
+        <span class="phase-badge p2">Week 2: Frontend Layout</span>
+      </div>
+      <div style="font-size: 6.8pt; color: #475569;">
+        Create <code>OnboardingWizard.jsx</code> and register routes in <code>App.jsx</code>. Build the Certificate Upload modal with drag-and-drop support and the ATS Resume Audit drawer. Ensure zero layout regressions on the existing dashboard.
+      </div>
+    </div>
+
+    <div class="phase-card">
+      <div class="phase-header">
+        <span style="color: #b45309;">Phase 3: AI Intelligence & Vision Pipeline</span>
+        <span class="phase-badge p3">Week 3: Intelligence Layer</span>
+      </div>
+      <div style="font-size: 6.8pt; color: #475569;">
+        Connect server-side Gemini 2.5 Flash for resume profile synthesis, certificate vision analysis, and mock interview scoring. Implement PDF metadata inspection to flag manipulated/forged documents.
+      </div>
+    </div>
+
+    <div class="phase-card">
+      <div class="phase-header">
+        <span style="color: #7e22ce;">Phase 4: TrustLedger Minting & Hardening</span>
+        <span class="phase-badge p4">Week 4: Final Hardening</span>
+      </div>
+      <div style="font-size: 6.8pt; color: #475569;">
+        Anchor verified certificate hashes and proctored interview scores to the sovereign TrustLedger. Conduct end-to-end responsive audits across mobile and desktop. Verify zero console warnings.
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top: 6px;">
+    <span>Production Safety & Developer Testing Checklist</span>
+    <span class="tag">Sanity Verification</span>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">Test Scenario</th>
+        <th style="width: 45%;">Verification Action</th>
+        <th style="width: 30%;">Expected Safe Behavior</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Onboarding Skip / Failure</strong></td>
+        <td>Upload an unreadable or corrupt resume PDF file during initial onboarding wizard.</td>
+        <td>UI informs user gently: <em>"Couldn't parse PDF, please fill basic info"</em>; does not throw React error.</td>
+      </tr>
+      <tr>
+        <td><strong>Forged Certificate Test</strong></td>
+        <td>Upload an image with spliced/edited text layer or Photoshop metadata.</td>
+        <td>Metadata inspector detects editing tool; status marked as <code>PENDING_AUDIT</code> or <code>REJECTED</code>.</td>
+      </tr>
+      <tr>
+        <td><strong>Server AI Timeout</strong></td>
+        <td>Simulate AI API rate-limit or temporary network drop during course scouting.</td>
+        <td>UI gracefully displays cached accredited course catalog with zero screen flickering.</td>
+      </tr>
+      <tr>
+        <td><strong>Mobile Viewport Audit</strong></td>
+        <td>Test onboarding wizard, resume upload, and interview simulator on 375px mobile screen.</td>
+        <td>Modals resize smoothly, buttons remain fully accessible, and camera HUD scales cleanly.</td>
+      </tr>
+      <tr>
+        <td><strong>Database Non-Disruption</strong></td>
+        <td>Run database seed scripts on clean database environment.</td>
+        <td>New tables are created cleanly alongside existing tables without foreign key constraint errors.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="trust-box" style="margin-top: 6px;">
+    <strong>💡 Presentation Defense for SIH Judges:</strong><br>
+    "Judges, our student ecosystem is comprehensive, intelligent, and mathematically verified. From the moment a student logs in, our server AI parses their resume, populates their profile, and verifies their certificates using a <strong>Multimodal Vision & Metadata Anti-Forgery Engine</strong>. All 16 student features—from proctored assessments and live GitHub telemetry to voice mock interviews and micro-bounties—operate in a non-cramped, modular architecture anchored to our <strong>Sovereign SHA-256 TrustLedger</strong>."
+  </div>
+
+  <div class="footer-note">
+    Smart India Hackathon 2026 &bull; Team SIGMA &bull; Problem Statement SIH26044 &bull; Product: SkillSetu Enterprise
+  </div>
+
+</body>
+</html>

@@ -3,16 +3,21 @@ import { Topbar } from '../../components/layout/Topbar';
 import { PageLoader } from '../../components/ui/Spinner';
 import { Badge } from '../../components/ui/Badge';
 import { usersAPI } from '../../services/api';
-import { Search, Users } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
+import { Search, Users, GraduationCap } from 'lucide-react';
 
 export default function AdminUsers() {
+  const { user } = useAuth();
+  const isAcademician = user?.role === 'ACADEMICIAN';
+
   const [users, setUsers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
-  const [roleFilter, setRoleFilter] = useState('');
+  const [roleFilter, setRoleFilter] = useState(isAcademician ? 'STUDENT' : '');
 
   const load = async () => {
-    const res = await usersAPI.getAll({ search, role: roleFilter || undefined, limit: 50 });
+    const activeRole = isAcademician ? 'STUDENT' : (roleFilter || undefined);
+    const res = await usersAPI.getAll({ search, role: activeRole, limit: 50 });
     setUsers(res.data.users || []);
     setLoading(false);
   };
@@ -21,25 +26,30 @@ export default function AdminUsers() {
 
   const roleBadge: Record<string, any> = { STUDENT: 'blue', RECRUITER: 'teal', ACADEMICIAN: 'purple', ADMIN: 'gray' };
 
-  if (loading) return <><Topbar title="Users" /><PageLoader /></>;
+  if (loading) return <><Topbar title={isAcademician ? "Student Cohort Directory" : "Users"} /><PageLoader /></>;
 
   return (
     <div>
-      <Topbar title="User Management" subtitle={`${users.length} users`} />
+      <Topbar 
+        title={isAcademician ? "Student Cohort Directory" : "User Management"} 
+        subtitle={isAcademician ? `${users.length} enrolled students monitored` : `${users.length} users registered`} 
+      />
       <div className="p-6">
         <div className="flex gap-3 mb-4">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-            <input className="input pl-9" placeholder="Search by name or email..." value={search}
+            <input className="input pl-9" placeholder={isAcademician ? "Search enrolled students by name or email..." : "Search by name or email..."} value={search}
               onChange={e => setSearch(e.target.value)} />
           </div>
-          <select className="input w-40" value={roleFilter} onChange={e => setRoleFilter(e.target.value)}>
-            <option value="">All Roles</option>
-            <option value="STUDENT">Students</option>
-            <option value="RECRUITER">Recruiters</option>
-            <option value="ACADEMICIAN">Academicians</option>
-            <option value="ADMIN">Admins</option>
-          </select>
+          {!isAcademician && (
+            <select className="input w-40" value={roleFilter} onChange={e => setRoleFilter(e.target.value)}>
+              <option value="">All Roles</option>
+              <option value="STUDENT">Students</option>
+              <option value="RECRUITER">Recruiters</option>
+              <option value="ACADEMICIAN">Academicians</option>
+              <option value="ADMIN">Admins</option>
+            </select>
+          )}
         </div>
 
         <div className="card overflow-hidden p-0">

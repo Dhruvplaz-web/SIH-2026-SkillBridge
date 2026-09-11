@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import {
   GraduationCap,
@@ -1068,34 +1068,67 @@ export default function LandingPage() {
       {/* FOOTER */}
       <footer className="bg-slate-950 border-t border-slate-800 py-12 text-slate-400 text-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold">
-                SB
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+            {/* Col 1: Identity */}
+            <div className="space-y-3 md:col-span-1">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-600 flex items-center justify-center text-white font-bold shadow-md">
+                  <span className="font-serif text-lg"> सेतु </span>
+                </div>
+                <div>
+                  <span className="font-bold text-white text-sm block">SkillSetu</span>
+                  <p className="text-[11px] text-slate-500">National Skill Grid Infrastructure</p>
+                </div>
               </div>
-              <div>
-                <span className="font-bold text-white text-sm">SkillBridge National Portal</span>
-                <p className="text-[11px] text-slate-500">Smart India Hackathon 2026 &bull; Problem Statement SIH26044</p>
-              </div>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Autonomous Four-Sided Skill Harmonization &amp; Cryptographic Attestation Platform.
+                Smart India Hackathon 2026 &bull; Problem Statement SIH26044.
+              </p>
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-6 text-slate-300">
-              <button onClick={() => navigate('/login')} className="hover:text-white transition-colors">
-                Sign In
-              </button>
-              <button onClick={() => navigate('/register')} className="hover:text-white transition-colors">
-                Register Institutional Account
-              </button>
-              <a href="#ml-engines" className="hover:text-white transition-colors">
-                ML Engines
-              </a>
-              <span className="text-slate-600">&bull;</span>
-              <span className="text-emerald-400">DPDP Act 2023 Compliant</span>
+            {/* Col 2: Core Platform Navigation */}
+            <div className="space-y-2.5">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200">Platform Hubs</h4>
+              <ul className="space-y-1.5 text-slate-400">
+                <li><Link to="/about" className="hover:text-teal-400 transition-colors">About Mission &amp; Highway</Link></li>
+                <li><Link to="/contact" className="hover:text-teal-400 transition-colors">Contact National Cell</Link></li>
+                <li><button onClick={() => navigate('/login')} className="hover:text-teal-400 transition-colors text-left">Stakeholder Sign In</button></li>
+                <li><button onClick={() => navigate('/register')} className="hover:text-teal-400 transition-colors text-left">Institutional Onboarding</button></li>
+              </ul>
+            </div>
+
+            {/* Col 3: Statutory & Legal */}
+            <div className="space-y-2.5">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200">Statutory &amp; Legal</h4>
+              <ul className="space-y-1.5 text-slate-400">
+                <li><Link to="/privacy" className="hover:text-teal-400 transition-colors">DPDP Act 2023 Privacy Policy</Link></li>
+                <li><Link to="/terms" className="hover:text-teal-400 transition-colors">Terms of Service</Link></li>
+                <li><Link to="/cookies" className="hover:text-teal-400 transition-colors">Cookie &amp; Local Storage Policy</Link></li>
+                <li><Link to="/accessibility" className="hover:text-teal-400 transition-colors">Universal Accessibility (WCAG 2.1)</Link></li>
+              </ul>
+            </div>
+
+            {/* Col 4: Sovereign Verification & Open Spec */}
+            <div className="space-y-2.5">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200">Machine &amp; Open Spec</h4>
+              <ul className="space-y-1.5 text-slate-400 font-mono text-[11px]">
+                <li><a href="/robots.txt" target="_blank" rel="noreferrer" className="hover:text-teal-400 transition-colors">robots.txt Directives</a></li>
+                <li><a href="/sitemap.xml" target="_blank" rel="noreferrer" className="hover:text-teal-400 transition-colors">sitemap.xml Index</a></li>
+                <li><a href="/llms.txt" target="_blank" rel="noreferrer" className="hover:text-teal-400 transition-colors">llms.txt Manifest</a></li>
+                <li><span className="text-emerald-400 font-bold">100% In-Country Data Residency</span></li>
+              </ul>
             </div>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-slate-900 text-center text-slate-500 text-[11px]">
-            &copy; {new Date().getFullYear()} SkillBridge. Designed and Developed for the Ministry of Education &amp; AICTE Smart India Hackathon Grand Finale.
+          <div className="pt-6 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-3 text-slate-500 text-[11px]">
+            <div>
+              &copy; {new Date().getFullYear()} SkillSetu. Ministry of Education &amp; AICTE Smart India Hackathon Grand Finale 2026.
+            </div>
+            <div className="flex items-center gap-4">
+              <span>All India Council for Technical Education</span>
+              <span>&bull;</span>
+              <span>NEP 2020 &amp; NCrF Aligned</span>
+            </div>
           </div>
         </div>
       </footer>

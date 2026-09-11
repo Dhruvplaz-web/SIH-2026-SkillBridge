@@ -67,12 +67,21 @@ export const skillsAPI = {
   deleteUserSkill: (skillId: string) => api.delete(`/skills/user/${skillId}`),
 };
 
-// ── Assessments ───────────────────────────────────────
+// ── Assessments & Practical Coding Arena ───────────────────
 export const assessmentsAPI = {
   getAll: () => api.get('/assessments'),
   getById: (id: string) => api.get(`/assessments/${id}`),
-  submit: (id: string, answers: number[]) => api.post(`/assessments/${id}/submit`, { answers }),
+  submit: (id: string, answers: any, proctorData?: { tabSwitches?: number; integrityScore?: number; proctorStatus?: string }) => 
+    api.post(`/assessments/${id}/submit`, { answers, ...proctorData }),
   getHistory: () => api.get('/assessments/history'),
+  getBadges: (userId?: string) => api.get('/assessments/badges', { params: userId ? { userId } : undefined }),
+  getCodingChallenges: () => api.get('/assessments/coding-challenges'),
+  runCodingChallenge: (challengeId: string, code: string, language: string) =>
+    api.post('/assessments/coding-challenges/run', { challengeId, code, language }),
+  submitCodingChallenge: (challengeId: string, code: string, language: string, tabSwitches: number = 0) =>
+    api.post('/assessments/coding-challenges/submit', { challengeId, code, language, tabSwitches }),
+  getHint: (challengeId: string, hintLevel: number = 1) =>
+    api.post('/assessments/coding-challenges/hint', { challengeId, hintLevel }),
 };
 
 // ── Opportunities ─────────────────────────────────────
@@ -188,12 +197,18 @@ export const recruiterFeaturesAPI = {
     api.post('/recruiter/interviews/schedule', data),
   getInterviews: () =>
     api.get('/recruiter/interviews'),
+  getCodingSubmissions: (params?: any) =>
+    api.get('/recruiter/coding-submissions', { params }),
+  assignCodingChallenge: (data: { candidateId: string; challengeId: string; deadline?: string; message?: string }) =>
+    api.post('/recruiter/coding-invites', data),
 };
 
 // ── Blueprint Academician Features API ─────────────────
 export const academicianFeaturesAPI = {
   analyzeCurriculumDiff: (data: { courseTitle: string; syllabusText: string; domain?: string }) =>
     api.post('/academician/curriculum/diff', data),
+  generateBoSProposal: (data: { courseTitle: string; domain?: string; department?: string; meetingRef?: string }) =>
+    api.post('/academician/curriculum/bos-proposal', data),
   getCurriculumAudits: () =>
     api.get('/academician/curriculum/history'),
   getConsultancies: () =>
@@ -208,6 +223,8 @@ export const academicianFeaturesAPI = {
     api.post('/academician/guest-lectures/request', data),
   getCapstones: () =>
     api.get('/academician/capstones'),
+  registerCapstone: (data: { title: string; studentTeam: string; academicAdvisor?: string; industryMentor: string; company: string; domain?: string; repoUrl?: string }) =>
+    api.post('/academician/capstones/register', data),
   endorseCapstone: (data: { capstoneId: string; facultyNotes?: string }) =>
     api.post('/academician/capstones/endorse', data),
 };

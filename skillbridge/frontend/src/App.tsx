@@ -32,6 +32,7 @@ import PostOpportunity from './pages/recruiter/PostOpportunity';
 import RecruiterOpportunities from './pages/recruiter/RecruiterOpportunities';
 import InterviewScheduler from './pages/recruiter/InterviewScheduler';
 import CodingSandbox from './pages/recruiter/CodingSandbox';
+import RecruiterAnalytics from './pages/recruiter/RecruiterAnalytics';
 
 // Academician
 import AcademicianDashboard from './pages/academician/AcademicianDashboard';
@@ -42,6 +43,7 @@ import CurriculumHarmonizer from './pages/academician/CurriculumHarmonizer';
 import AccreditationDossier from './pages/academician/AccreditationDossier';
 import CapstoneHub from './pages/academician/CapstoneHub';
 import GuestLectures from './pages/academician/GuestLectures';
+import AcademicianAnalytics from './pages/academician/AcademicianAnalytics';
 
 // Admin
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -55,6 +57,13 @@ import LedgerMonitor from './pages/admin/LedgerMonitor';
 
 // Public
 import LandingPage from './pages/public/LandingPage';
+import PrivacyPolicy from './pages/public/PrivacyPolicy';
+import TermsOfService from './pages/public/TermsOfService';
+import CookiePolicy from './pages/public/CookiePolicy';
+import AccessibilityStatement from './pages/public/AccessibilityStatement';
+import AboutUs from './pages/public/AboutUs';
+import ContactUs from './pages/public/ContactUs';
+import { ConsentBanner } from './components/ui/ConsentBanner';
 
 // Shared
 import Notifications from './pages/shared/Notifications';
@@ -77,10 +86,17 @@ export default function App() {
       <MobileNavProvider>
         <BrowserRouter>
           <PageMetaTracker />
+          <ConsentBanner />
         <Routes>
           {/* Public */}
           <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<LandingPage />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
+          <Route path="/cookies" element={<CookiePolicy />} />
+          <Route path="/accessibility" element={<AccessibilityStatement />} />
           <Route path="/portal" element={<RootRedirect />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -118,7 +134,7 @@ export default function App() {
               <Route path="/recruiter/opportunities" element={<Navigate to="/recruiter/applications" replace />} />
               <Route path="/recruiter/candidates" element={<Navigate to="/recruiter/applications" replace />} />
               <Route path="/recruiter/mentorship" element={<AcademicianMentorship />} />
-              <Route path="/recruiter/analytics" element={<StudentAnalytics />} />
+              <Route path="/recruiter/analytics" element={<RecruiterAnalytics />} />
               <Route path="/recruiter/notifications" element={<Notifications />} />
             </Route>
           </Route>
@@ -136,7 +152,7 @@ export default function App() {
               <Route path="/academician/training" element={<AcademicianTraining />} />
               <Route path="/academician/mentorship" element={<AcademicianMentorship />} />
               <Route path="/academician/collaborations" element={<AcademicianMentorship />} />
-              <Route path="/academician/analytics" element={<StudentAnalytics />} />
+              <Route path="/academician/analytics" element={<AcademicianAnalytics />} />
               <Route path="/academician/notifications" element={<Notifications />} />
             </Route>
           </Route>

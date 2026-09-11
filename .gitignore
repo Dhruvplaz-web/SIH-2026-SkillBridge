@@ -30,7 +30,9 @@ coverage/
 *.log
 scratch/
 .system_generated/
-cloudflared.exe
+bin/
+bin/cloudflared.exe
+archives/
 
 # Uploaded candidate files & resumes
 uploads/

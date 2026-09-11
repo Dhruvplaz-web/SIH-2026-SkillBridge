@@ -174,9 +174,28 @@ export async function initializeDatabase() {
       percentage REAL NOT NULL,
       proficiency TEXT NOT NULL,
       answers TEXT NOT NULL,
+      tab_switches INTEGER DEFAULT 0,
+      integrity_score INTEGER DEFAULT 100,
+      proctor_status TEXT DEFAULT 'CLEAN',
       completed_at TEXT DEFAULT (datetime('now')),
       FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
       FOREIGN KEY (assessment_id) REFERENCES assessments(id) ON DELETE CASCADE
+    );
+
+    CREATE TABLE IF NOT EXISTS user_badges (
+      id TEXT PRIMARY KEY,
+      user_id TEXT NOT NULL,
+      badge_id TEXT NOT NULL,
+      badge_name TEXT NOT NULL,
+      badge_category TEXT NOT NULL,
+      tier TEXT NOT NULL DEFAULT 'GOLD',
+      score INTEGER NOT NULL,
+      assessment_title TEXT NOT NULL,
+      verification_hash TEXT NOT NULL,
+      ledger_block_id TEXT,
+      issuer TEXT DEFAULT 'SkillSetu National Accreditation Council (AICTE/NCVET)',
+      issued_at TEXT DEFAULT (datetime('now')),
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     );
 
     CREATE TABLE IF NOT EXISTS opportunities (
@@ -567,6 +586,9 @@ export async function initializeDatabase() {
     'ALTER TABLE student_profiles ADD COLUMN github_telemetry TEXT',
     'ALTER TABLE opportunities ADD COLUMN requisition_type TEXT DEFAULT "Full-Time / Co-Op"',
     'ALTER TABLE opportunities ADD COLUMN skill_weights TEXT',
+    'ALTER TABLE assessment_results ADD COLUMN tab_switches INTEGER DEFAULT 0',
+    'ALTER TABLE assessment_results ADD COLUMN integrity_score INTEGER DEFAULT 100',
+    'ALTER TABLE assessment_results ADD COLUMN proctor_status TEXT DEFAULT "CLEAN"',
   ];
   for (const sql of safeMigrations) {
     try { await db.execute({ sql, args: [] }); } catch (_) { /* column already exists */ }

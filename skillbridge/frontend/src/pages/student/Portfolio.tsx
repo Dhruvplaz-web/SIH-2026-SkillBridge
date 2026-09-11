@@ -5,19 +5,21 @@ import { Topbar } from '../../components/layout/Topbar';
 import { PageLoader } from '../../components/ui/Spinner';
 import { Badge, getProficiencyBadge } from '../../components/ui/Badge';
 import { Modal } from '../../components/ui/Modal';
-import { usersAPI } from '../../services/api';
+import { usersAPI, assessmentsAPI } from '../../services/api';
 import { CertificateVerificationModal } from '../../components/ui/CertificateVerificationModal';
 import { 
   ExternalLink, Github, Linkedin, Globe, Plus, Trash2, Edit3, 
   Award, FolderOpen, ShieldCheck, QrCode, Share2, Check, 
   Printer, Cpu, GitFork, Star, Sparkles, CheckCircle2 
 } from 'lucide-react';
+import clsx from 'clsx';
 
 export default function Portfolio() {
   const { id } = useParams();
   const { user } = useAuth();
 
   const [data, setData] = useState<any>(null);
+  const [badges, setBadges] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);
   const [showVerifyModal, setShowVerifyModal] = useState(false);
@@ -36,8 +38,12 @@ export default function Portfolio() {
   const load = async () => {
     if (!targetUserId) return;
     try {
-      const res = await usersAPI.getById(targetUserId);
+      const [res, bRes] = await Promise.all([
+        usersAPI.getById(targetUserId),
+        assessmentsAPI.getBadges(targetUserId).catch(() => ({ data: { badges: [] } })),
+      ]);
       setData(res.data);
+      setBadges(bRes.data?.badges || []);
       setProfileForm({
         education: res.data.profile?.education || '',
         branch: res.data.profile?.branch || '',
@@ -266,6 +272,64 @@ export default function Portfolio() {
               <span className="text-amber-700">SQL (6%)</span>
             </div>
           </div>
+        </div>
+
+        {/* Accredited Skill Badges (AICTE National Ledger Backed) */}
+        <div className="card p-6 border border-gray-200">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="section-title flex items-center gap-2">
+              <Award className="w-5 h-5 text-amber-500" />
+              Accredited Skill Badges & Practical Arena Mastery
+            </h3>
+            <span className="text-[11px] font-mono text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 flex items-center gap-1">
+              <ShieldCheck className="w-3.5 h-3.5" /> AICTE NCrF Verified
+            </span>
+          </div>
+
+          {badges.length === 0 ? (
+            <p className="text-sm text-gray-500">No accredited badges earned yet. Complete proctored assessments or coding challenges to earn verified digital badges.</p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {badges.map((b: any) => {
+                const isGold = b.tier === 'GOLD';
+                const isSilver = b.tier === 'SILVER';
+                return (
+                  <div
+                    key={b.id}
+                    className={clsx(
+                      'p-4 rounded-xl border flex flex-col justify-between transition-all',
+                      isGold ? 'bg-amber-50/60 border-amber-300' : isSilver ? 'bg-slate-50 border-slate-300' : 'bg-orange-50/60 border-orange-300'
+                    )}
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className={clsx(
+                          'text-[10px] font-black uppercase px-2 py-0.5 rounded border',
+                          isGold ? 'bg-amber-100 border-amber-400 text-amber-800' : isSilver ? 'bg-slate-200 border-slate-400 text-slate-800' : 'bg-orange-100 border-orange-400 text-orange-800'
+                        )}>
+                          {b.tier} TIER
+                        </span>
+                        <span className="text-xs font-mono font-bold text-gray-700">{b.score}%</span>
+                      </div>
+                      <div className="flex items-center gap-2.5 mt-1">
+                        <span className="text-2xl">{isGold ? '🥇' : isSilver ? '🥈' : '🥉'}</span>
+                        <div>
+                          <h4 className="font-bold text-gray-900 text-xs sm:text-sm leading-tight">{b.badge_name}</h4>
+                          <span className="text-[11px] text-gray-500">{b.badge_category}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mt-3 pt-2 border-t border-gray-200/60 flex items-center justify-between text-[10px] font-mono text-gray-500">
+                      <span>{b.ledger_block_id || 'BLK-9000'}</span>
+                      <span className="text-teal-700 font-bold truncate max-w-[120px]" title={b.verification_hash}>
+                        {b.verification_hash.substring(0, 14)}...
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
 
         {/* Verified Skills Matrix */}

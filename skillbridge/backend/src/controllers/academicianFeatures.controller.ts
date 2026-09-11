@@ -44,6 +44,99 @@ export async function analyzeCurriculumDiff(req: AuthRequest, res: Response) {
   }
 }
 
+export async function generateBoSProposal(req: AuthRequest, res: Response) {
+  try {
+    const { courseTitle, domain = 'Engineering & Technology', department = 'Department of Computer Science & Engineering', meetingRef } = req.body;
+    
+    const resolutionId = `BOS-RES-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+    const aicteCode = `AICTE-${domain.includes('Clinical') ? 'HLTH' : domain.includes('VLSI') ? 'EC' : 'CS'}-604-REV26`;
+    const docHash = '0x' + crypto.createHash('sha256').update(`${resolutionId}:${courseTitle}:${Date.now()}`).digest('hex');
+
+    const proposal = {
+      resolutionId,
+      aicteCode,
+      courseTitle: courseTitle || 'B.Tech Cloud & Distributed Systems (Sem 6)',
+      department,
+      meetingDate: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }),
+      meetingRef: meetingRef || 'AC/BOS/2026/ITEM-14B',
+      academicCycle: '2025–2026 / 2026–2027',
+      creditDistribution: {
+        lectures: 3,
+        tutorials: 0,
+        practicals: 2,
+        totalCredits: 4
+      },
+      courseOutcomes: [
+        { id: 'CO1', outcome: 'Analyze classical distributed systems vs cloud-native microservices architecture', bloomLevel: 'Analyze (Level 4)' },
+        { id: 'CO2', outcome: 'Design containerized services with Docker and Kubernetes declarative deployments', bloomLevel: 'Apply (Level 3)' },
+        { id: 'CO3', outcome: 'Implement high-throughput asynchronous messaging using Kafka / RabbitMQ and gRPC', bloomLevel: 'Create (Level 6)' },
+        { id: 'CO4', outcome: 'Deploy RAG vector databases and edge AI inference pipelines with zero downtime', bloomLevel: 'Evaluate (Level 5)' },
+        { id: 'CO5', outcome: 'Demonstrate zero-trust telemetry, OpenTelemetry tracing, and chaos engineering', bloomLevel: 'Apply (Level 3)' }
+      ],
+      unitAmendments: [
+        {
+          unit: 'Unit I',
+          oldTitle: 'Legacy Distributed RPC & SOAP Protocols',
+          newTitle: 'Cloud-Native Container Orchestration & Microservices (Docker & K8s)',
+          prunedContent: 'SOAP XML schemas, manual RPC stubs, legacy CORBA protocols',
+          addedContent: 'OCI container spec, multi-stage Docker builds, Kubernetes Pods, Deployments, Services & Ingress controllers',
+          rationale: 'Mandated by 94% of enterprise cloud architect job requisitions in 2026.'
+        },
+        {
+          unit: 'Unit II',
+          oldTitle: 'POSIX Threads & Microprocessor Cycles',
+          newTitle: 'High-Concurrency Event Loops, Go Coroutines & Rust Async Runtimes',
+          prunedContent: 'Intel 8085 cycle timing loops, obsolete POSIX mutex locks',
+          addedContent: 'Tokio async runtimes, Go channel concurrency, reactive webstreams, WebSockets',
+          rationale: 'Aligns with modern high-frequency trading and low-latency microservices.'
+        },
+        {
+          unit: 'Unit III',
+          oldTitle: 'Manual Apache HTTP Server & Socket Binding',
+          newTitle: 'gRPC Protocol Buffers & High-Performance API Gateways',
+          prunedContent: 'Raw TCP socket C bindings, manual Apache prefork configs',
+          addedContent: 'HTTP/2 multiplexing, Protocol Buffers binary serialization, Kong/Envoy reverse proxies',
+          rationale: 'Industry migration away from heavy REST/XML towards binary RPC streaming.'
+        },
+        {
+          unit: 'Unit IV',
+          oldTitle: 'Relational 3NF Schema Normalization Exclusively',
+          newTitle: 'Vector Databases, Hybrid Polyglot Persistence & Distributed Caching',
+          prunedContent: 'Theoretical 5NF decompositions, single-node file storage',
+          addedContent: 'Vector indexing (HNSW, pgvector), Redis clusters, Cassandra distributed ring architectures',
+          rationale: 'Essential foundation for Generative AI, RAG embeddings, and scalable cloud state.'
+        },
+        {
+          unit: 'Unit V',
+          oldTitle: 'Monolithic Active-Passive Failover Strategies',
+          newTitle: 'Observability, OpenTelemetry, Chaos Engineering & Zero-Trust Mesh',
+          prunedContent: 'Legacy heartbeat scripts, manual failover IP switching',
+          addedContent: 'Prometheus & Grafana metrics, Istio service mesh mTLS, LitmusChaos automated drills',
+          rationale: 'Addresses enterprise site reliability engineering (SRE) operational requirements.'
+        }
+      ],
+      practicalLabCurriculum: [
+        { expNo: 1, title: 'Multi-stage Dockerization and Kubernetes Minikube local cluster deployment' },
+        { expNo: 2, title: 'High-speed unary and streaming RPC implementation using gRPC & Protobuf' },
+        { expNo: 3, title: 'Event-driven pub/sub architecture deployment with Apache Kafka & consumer groups' },
+        { expNo: 4, title: 'Vector search embeddings indexing using pgvector with sub-50ms latency query tests' },
+        { expNo: 5, title: 'Chaos testing cluster resilience with simulated network partitions and pod crashes' }
+      ],
+      recommendedReferences: [
+        'Martin Kleppmann, "Designing Data-Intensive Applications", O\'Reilly Media, 2nd Edition',
+        'Brendan Burns, "Designing Distributed Systems: Patterns and Paradigms for Scalable Architecture"',
+        'AICTE Model Curriculum for Undergraduate Degree in Engineering & Technology (Volume 2, 2026)'
+      ],
+      docHash
+    };
+
+    return res.json({ success: true, proposal });
+  } catch (err: any) {
+    console.error('Error generating BoS proposal:', err);
+    return res.status(500).json({ error: 'Failed to generate BoS proposal' });
+  }
+}
+
 export async function getCurriculumAudits(req: AuthRequest, res: Response) {
   try {
     const academicianId = req.user!.id;
@@ -135,23 +228,62 @@ export async function getAccreditationDossier(req: AuthRequest, res: Response) {
     const totalCerts = (certsCount.rows[0] as any).count || 85;
     const totalApps = (appsCount.rows[0] as any).count || 210;
 
+    const blockHash = '0x' + crypto.createHash('sha256').update(`NAAC_NBA_DOSSIER:2025-2026:${totalStudents}:${verifiedPlacements}`).digest('hex');
+    const merkleRoot = '0x' + crypto.createHash('sha256').update(`${blockHash}:MERKLE_TREE_ROOT:AICTE_DATA_FEED`).digest('hex');
+
     const dossier = {
       institutionName: 'National Institute of Technology & Allied Sciences',
       academicCycle: '2025 – 2026',
       accreditationBodies: ['NAAC (Criteria 1, 2 & 5)', 'NBA (Tier-1 Criteria 2, 8 & 9)'],
+      ssrAnnexureNo: `SSR/ANNEXURE/2026/${Math.floor(10000 + Math.random() * 90000)}`,
+      blockHash,
+      merkleRoot,
+      verificationTimestamp: new Date().toISOString(),
+      aicteComplianceCode: 'AICTE-NBA-TIER1-APPROVED',
       metrics: {
         totalEnrolledScholars: totalStudents,
         placementTransitionRate: `${Math.round((verifiedPlacements / (totalStudents || 1)) * 100)}%`,
         activeIndustryMoUs: 14,
         totalInternshipHoursLogged: totalStudents * 160,
         averageIndustryAttestationIndex: '92.4 / 100',
-        nsdfLevel7AttestationsCount: totalCerts
+        nsdfLevel7AttestationsCount: totalCerts,
+        verifiedCapstoneCount: 28,
+        facultyIndustryImmersionDays: 420
+      },
+      criteriaBreakdown: {
+        criterion1: {
+          title: 'NAAC Criterion 1: Curricular Aspects & Industry Alignment',
+          score: '3.82 / 4.00',
+          highlights: [
+            '100% syllabus diff audited against 2026 cloud and AI job vacancies',
+            '4 interdisciplinary elective tracks introduced with corporate co-sponsorship',
+            'Syllabus amendment cycle reduced from 36 months to 6 months via AICTE Harmonizer'
+          ]
+        },
+        criterion2: {
+          title: 'NAAC Criterion 2 & NBA Criterion 2: Teaching-Learning & Faculty Mentorship',
+          score: '3.75 / 4.00',
+          highlights: [
+            '345 cumulative corporate guest lecture hours hosted across 8 departments',
+            '1:12 faculty-to-industry-co-mentor ratio established for final year engineering',
+            'Faculty members accredited with verified Micro-credentials in Cloud and VLSI'
+          ]
+        },
+        criterion5: {
+          title: 'NAAC Criterion 5 & NBA Criterion 8: Student Progression & Capstone Innovation',
+          score: '3.88 / 4.00',
+          highlights: [
+            '100% capstone repositories cryptographically attested against code plagiarism',
+            '74% of corporate internship conversions to pre-placement offers (PPOs)',
+            'Direct DigiLocker & TrustLedger cryptographic verification of all completion credentials'
+          ]
+        }
       },
       mouPartners: [
-        { company: 'Tata Consultancy Services', dateSigned: 'Jan 2025', focusArea: 'Cloud Microfrontends & DevOps Labs', activeInterns: 18 },
-        { company: 'Bharat Electronics Ltd', dateSigned: 'March 2025', focusArea: 'Embedded FPGA Radar Signal Processing', activeInterns: 12 },
-        { company: 'National Medicinal Plants Board', dateSigned: 'June 2025', focusArea: 'Ayush Clinical FHIR Informatics', activeInterns: 8 },
-        { company: 'Amazon Web Services Academy', dateSigned: 'August 2025', focusArea: 'Serverless Cloud Architectures', activeInterns: 24 }
+        { company: 'Tata Consultancy Services', dateSigned: 'Jan 2025', focusArea: 'Cloud Microfrontends & DevOps Labs', activeInterns: 18, verificationTx: '0x3b1c8f...2a4d' },
+        { company: 'Bharat Electronics Ltd', dateSigned: 'March 2025', focusArea: 'Embedded FPGA Radar Signal Processing', activeInterns: 12, verificationTx: '0x9e4a1b...7c8f' },
+        { company: 'National Medicinal Plants Board', dateSigned: 'June 2025', focusArea: 'Ayush Clinical FHIR Informatics', activeInterns: 8, verificationTx: '0x5c8e2a...1d3b' },
+        { company: 'Amazon Web Services Academy', dateSigned: 'August 2025', focusArea: 'Serverless Cloud Architectures', activeInterns: 24, verificationTx: '0x7a2b9c...4e6f' }
       ],
       mentorshipRecords: [
         { faculty: 'Dr. Priya Sharma', industryMentor: 'Rahul Verma (TCS)', domain: 'Full-Stack Distributed Systems', studentCount: 22, hours: 140 },
@@ -221,6 +353,42 @@ export async function getCapstoneProjects(req: AuthRequest, res: Response) {
   } catch (err: any) {
     console.error('Error fetching capstones:', err);
     return res.status(500).json({ error: 'Failed to fetch capstones' });
+  }
+}
+
+export async function registerCapstoneProject(req: AuthRequest, res: Response) {
+  try {
+    const academicianId = req.user!.id;
+    const { title, studentTeam, academicAdvisor, industryMentor, company, domain, repoUrl } = req.body;
+
+    if (!title || !studentTeam || !industryMentor || !company) {
+      return res.status(400).json({ error: 'Title, student team, mentor, and company are required' });
+    }
+
+    const capId = cuid();
+    await db.execute({
+      sql: `INSERT INTO capstone_projects (id, title, student_team, academic_advisor, industry_mentor, company, domain, repo_url, status)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'IN_PROGRESS')`,
+      args: [
+        capId,
+        title,
+        studentTeam,
+        academicAdvisor || 'Dr. Priya Sharma (CSE Guide)',
+        industryMentor,
+        company,
+        domain || 'Computer Science & AI',
+        repoUrl || 'https://github.com/skillsetu-labs/capstone-project'
+      ]
+    });
+
+    return res.status(201).json({
+      success: true,
+      message: 'Capstone Co-Mentored Project registered successfully.',
+      capstoneId: capId
+    });
+  } catch (err: any) {
+    console.error('Error registering capstone:', err);
+    return res.status(500).json({ error: 'Failed to register capstone project' });
   }
 }
 

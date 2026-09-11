@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SkillSetu vs SIH-2026-main: Role-Based Analysis & Student Experience Roadmap</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 13mm 13mm 13mm 13mm;
+      @bottom-right {
+        content: counter(page);
+      }
+    }
+    
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #1e293b;
+      line-height: 1.45;
+      font-size: 9pt;
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+    }
+
+    h1, h2, h3, h4 {
+      color: #0f172a;
+      font-weight: 700;
+      margin-top: 0;
+    }
+
+    .header-box {
+      border: 2px solid #1e40af;
+      border-radius: 8px;
+      padding: 12px 16px;
+      background: linear-gradient(135deg, #eff6ff 0%, #f8fafc 100%);
+      margin-bottom: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #cbd5e1;
+      padding-bottom: 6px;
+      margin-bottom: 6px;
+    }
+
+    .badge-sih {
+      background: #1e40af;
+      color: #ffffff;
+      font-size: 7.5pt;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-ps {
+      background: #e2e8f0;
+      color: #1e293b;
+      font-size: 7.5pt;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+
+    .title {
+      font-size: 15pt;
+      color: #0f172a;
+      margin: 2px 0;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: 9pt;
+      color: #475569;
+      margin-bottom: 6px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      font-size: 7.5pt;
+      color: #334155;
+    }
+
+    .meta-item strong {
+      display: block;
+      color: #0f172a;
+      font-size: 8pt;
+    }
+
+    /* Section Titles */
+    .section-title {
+      font-size: 10.5pt;
+      color: #1e3a8a;
+      border-bottom: 2px solid #2563eb;
+      padding-bottom: 3px;
+      margin-top: 14px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-title span.tag {
+      background: #dbeafe;
+      color: #1e40af;
+      font-size: 7pt;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 6px 0 10px 0;
+      font-size: 7.5pt;
+    }
+
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 4px 6px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f1f5f9;
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    tr:nth-child(even) td {
+      background: #fbfcfe;
+    }
+
+    /* Cards & Containers */
+    .card {
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      background: #ffffff;
+      padding: 8px 10px;
+      margin-bottom: 8px;
+      page-break-inside: avoid;
+    }
+
+    /* Onboarding Flow Visual */
+    .flow-container {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px 10px;
+      margin-bottom: 10px;
+    }
+
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 5px;
+      margin-top: 5px;
+    }
+
+    .flow-step {
+      background: #ffffff;
+      border: 1px solid #94a3b8;
+      border-top: 3px solid #2563eb;
+      border-radius: 4px;
+      padding: 5px 6px;
+      font-size: 7pt;
+      position: relative;
+    }
+
+    .flow-step strong {
+      display: block;
+      color: #0f172a;
+      font-size: 7.5pt;
+      margin-bottom: 1px;
+    }
+
+    .flow-step-num {
+      position: absolute;
+      top: -8px;
+      right: 5px;
+      background: #2563eb;
+      color: #ffffff;
+      font-size: 6pt;
+      font-weight: 700;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .trust-box {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-left: 4px solid #059669;
+      border-radius: 6px;
+      padding: 7px 10px;
+      margin-bottom: 10px;
+      font-size: 7.5pt;
+    }
+
+    .trust-box strong {
+      color: #065f46;
+      font-size: 8pt;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* Role Header Boxes */
+    .role-badge {
+      display: inline-block;
+      font-size: 7pt;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .badge-student { background: #dbeafe; color: #1e40af; }
+    .badge-recruiter { background: #fef3c7; color: #92400e; }
+    .badge-academician { background: #e0e7ff; color: #3730a3; }
+    .badge-admin { background: #fee2e2; color: #991b1b; }
+
+    .role-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .feature-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 3px solid #2563eb;
+      border-radius: 4px;
+      padding: 5px 7px;
+      font-size: 7.5pt;
+      margin-bottom: 4px;
+      page-break-inside: avoid;
+    }
+
+    .feature-item strong {
+      color: #0f172a;
+      font-size: 8pt;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .pitch-quote {
+      background: #eff6ff;
+      border-left: 4px solid #3b82f6;
+      border-radius: 4px;
+      padding: 8px 12px;
+      font-size: 8pt;
+      font-style: italic;
+      color: #1e3a8a;
+      margin: 8px 0;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 7pt;
+      color: #94a3b8;
+      margin-top: 10px;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header-box">
+    <div class="header-top">
+      <span class="badge-sih">Smart India Hackathon 2026 &bull; Technical Architecture</span>
+      <span class="badge-ps">Problem Statement ID: SIH26044</span>
+    </div>
+    <div class="title">SkillSetu vs. SIH-2026-main: Role-Based Gap Analysis & Student Experience Roadmap</div>
+    <div class="subtitle">Complete Technical Blueprint: Seamless First-Login Onboarding &bull; AI Certificate Credibility Engine &bull; Zero Student API Key Dependency &bull; 20 Innovation Features</div>
+    <div class="meta-grid">
+      <div class="meta-item"><strong>Our Platform:</strong> SkillSetu (Enterprise Production)</div>
+      <div class="meta-item"><strong>Compared Project:</strong> SIH-2026-main (SkillBridge)</div>
+      <div class="meta-item"><strong>AI Architecture:</strong> 100% Server-Side (Zero Student Keys)</div>
+      <div class="meta-item"><strong>Theme:</strong> Smart Automation &bull; Team SIGMA</div>
+    </div>
+  </div>
+
+  <!-- TRUST & PRIVACY PRINCIPLE (ADDRESSING STUDENT CONCERNS) -->
+  <div class="trust-box">
+    <strong>🔒 Architecture Decision: Zero-Trust Client Model (No Student API Keys Ever)</strong>
+    Students are <strong>never asked for personal API keys</strong>. Requiring students to supply private keys damages trust and risks accidental leakage. All AI telemetry (Resume Ingestion, Skill Mapping, Course Scouting, and Certificate Verification) runs <strong>100% on the platform's secure server infrastructure</strong> using managed Gemini 2.5 Flash and local Python processors. The student experiences instant, frictionless automation at zero cost.
+  </div>
+
+  <!-- THE SEAMLESS 5-STEP ONBOARDING LIFECYCLE -->
+  <div class="flow-container">
+    <div style="font-size: 8pt; color: #334155; margin-bottom: 4px;">
+      <strong>🌟 The Seamless 5-Step First-Login Onboarding & Verification Journey:</strong>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <span class="flow-step-num">1</span>
+        <strong>Initial Login</strong>
+        Student logs in via college email or OAuth. System detects first-time user flag (<code>is_onboarded: false</code>).
+      </div>
+      <div class="flow-step">
+        <span class="flow-step-num">2</span>
+        <strong>Immediate Resume Ingestion</strong>
+        Prompts drag-and-drop resume upload (PDF). Local server parses text in &lt;100ms with DPDP PII masking.
+      </div>
+      <div class="flow-step">
+        <span class="flow-step-num">3</span>
+        <strong>AI Profile Synthesis</strong>
+        Server AI synthesizes profile: extracts skills, education, GitHub repos, and initial proficiency levels.
+      </div>
+      <div class="flow-step">
+        <span class="flow-step-num">4</span>
+        <strong>Review & Verification Modal</strong>
+        Student reviews profile: adds missing achievements, projects, and uploads certificates for AI credibility check.
+      </div>
+      <div class="flow-step">
+        <span class="flow-step-num">5</span>
+        <strong>Landing Page Launch</strong>
+        Student is redirected to Dashboard with populated match rings, verified badges, and personalized opportunities!
+      </div>
+    </div>
+  </div>
+
+  <!-- DEDICATED AI CERTIFICATE CREDIBILITY & FRAUD VERIFICATION ENGINE -->
+  <div class="card" style="border-left: 4px solid #059669; background: #f0fdf4;">
+    <div style="font-weight: 700; color: #065f46; font-size: 8.5pt; margin-bottom: 4px;">
+      🔍 Specialized AI Certificate Credibility & Anti-Forgery Verification Engine
+    </div>
+    <div style="font-size: 7.5pt; color: #1e293b; line-height: 1.4;">
+      When a student uploads a course or achievement certificate (PDF or Image), SkillSetu passes it through a 3-layer anti-fraud pipeline before adding it to their verified profile:
+      <ul style="margin: 3px 0 3px 12px; padding: 0;">
+        <li><strong>1. Multimodal Vision AI (Gemini 2.5 Flash Vision / LayoutLMv3):</strong> Inspects layout, official issuing authority typography, recognized logo vectors, standardized course codes, and authorized digital signatures (NPTEL, Coursera, AWS, edX, IITs).</li>
+        <li><strong>2. PDF Metadata & Splicing Anomaly Detection (Python <code>pikepdf</code> & OpenCV):</strong> Inspects binary metadata to flag documents modified by editing software (Photoshop, Canva, Illustrator), detects mismatched font layers (editing the name over someone else's certificate), and catches altered dates.</li>
+        <li><strong>3. Automated QR Code & Registry Webhook Resolver (Python <code>pyzbar</code>):</strong> Decodes embedded QR codes or verification URLs (e.g., <code>nptel.ac.in/noc/Ecertificate</code>) and queries the issuing academy's public API to confirm matching student names and grades.</li>
+      </ul>
+      <strong>TrustLedger Minting:</strong> Certifications scoring &ge; 90% confidence are assigned the <span style="background: #dcfce7; color: #15803d; padding: 1px 4px; border-radius: 2px; font-weight: 700;">VERIFIED</span> badge and minted as an immutable SHA-256 block hash on the TrustLedger.
+    </div>
+  </div>
+
+  <!-- SECTION 1: ROLE-BASED GAP ANALYSIS -->
+  <div class="section-title">
+    <span>1. Missing Functions & Features in SIH-2026-main vs. SkillSetu (Role-by-Role)</span>
+    <span class="tag">Gap Analysis</span>
+  </div>
+
+  <!-- STUDENT ROLE TABLE -->
+  <div class="card" style="border-left: 4px solid #2563eb;">
+    <span class="role-badge badge-student">Role 1: Student & Engineering Scholar</span>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 24%;">Capability</th>
+          <th style="width: 38%;">Present in SkillSetu (Our Website)</th>
+          <th style="width: 38%;">Status in SIH-2026-main (SkillBridge)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Automated Resume Onboarding</strong></td>
+          <td>Immediate PDF resume ingestion upon first login; server-side AI extracts skills, degree, and projects.</td>
+          <td><strong style="color: #dc2626;">Completely Missing:</strong> Manual text entry only; no automated resume-to-profile extraction.</td>
+        </tr>
+        <tr>
+          <td><strong>AI Certificate Credibility Engine</strong></td>
+          <td>Multimodal Vision AI + PDF metadata tampering detector + QR registry validation before profile inclusion.</td>
+          <td><strong style="color: #dc2626;">Completely Missing:</strong> Accepts unverified text claims with zero anti-forgery verification.</td>
+        </tr>
+        <tr>
+          <td><strong>Proctored Assessment & Anti-Cheat</strong></td>
+          <td>Live Camera Proctor HUD + Fullscreen Lockdown + Window Blur & Tab-switch violation counter.</td>
+          <td><strong style="color: #dc2626;">Completely Missing:</strong> Basic unproctored radio-button quiz; students can open tabs or copy answers with zero detection.</td>
+        </tr>
+        <tr>
+          <td><strong>Public Verifiable Portfolio</strong></td>
+          <td>Public vanity URL (<code>/portfolio/:id</code>) + Dynamic QR code + Live GitHub repository telemetry card (stars, forks, languages).</td>
+          <td><strong style="color: #dc2626;">Completely Missing:</strong> Private authenticated profile only. No shareable public link, no dynamic QR code, no GitHub API integration.</td>
+        </tr>
+        <tr>
+          <td><strong>Multi-Track Engineering Domains</strong></td>
+          <td>Deep domain categorization across Software Development, Cloud & DevOps, Data Science & AI/ML, Embedded Systems, and Core Engineering.</td>
+          <td><strong style="color: #dc2626;">Completely Missing:</strong> Single flat list of generic web tags with no deep multi-disciplinary domain categorization or skill ontologies.</td>
+        </tr>
+        <tr>
+          <td><strong>Interactive Competency Matrix</strong></td>
+          <td>5-tier mastery hierarchy (Level 1–5) with visual comparative bars (Self-claim vs. Proctored Verified score).</td>
+          <td><strong style="color: #dc2626;">Completely Missing:</strong> Simple 3-tier dropdown (Beg/Int/Adv) with no visual comparative audit or anti-inflation metric.</td>
+        </tr>
+        <tr>
+          <td><strong>Career Roadmap & Score Leap</strong></td>
+          <td>Milestone Stepper (Course &rarr; Test &rarr; Mentorship &rarr; 1-Click Apply) with predictive match score leap projection (e.g. 94% &rarr; 100%).</td>
+          <td><strong style="color: #dc2626;">Completely Missing:</strong> Flat, unguided job cards with a static percentage ring and zero milestone step progression.</td>
+        </tr>
+        <tr>
+          <td><strong>Tiered Budget Course Filters</strong></td>
+          <td>Interactive budget filter: Free/Govt Funded (₹0), Budget Boosters (&lt;₹1,000), and Sponsored & Grant modules.</td>
+          <td><strong style="color: #dc2626;">Completely Missing:</strong> Flat list of training courses with no price filters, subsidy tags, or grant eligibility indicators.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- RECRUITER ROLE TABLE -->
+  <div class="card" style="border-left: 4px solid #d97706;">
+    <span class="role-badge badge-recruiter">Role 2: Industry Partner & Recruiter</span>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 24%;">Capability</th>
+          <th style="width: 38%;">Present in SkillSetu (Our Website)</th>
+          <th style="width: 38%;">Status in SIH-2026-main (SkillBridge)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Cryptographic Trust Verification</strong></td>
+          <td>Recruiters can inspect candidate SHA-256 block hashes on the sovereign TrustLedger to verify score authenticity.</td>
+          <td><strong style="color: #dc2626;">Completely Missing:</strong> Plain database integers in SQLite that anyone with backend access can alter undetected.</td>
+        </tr>
+        <tr>
+          <td><strong>Proctor Integrity Telemetry</strong></td>
+          <td>Displays real-time proctor integrity scores (e.g. 98% Integrity, 0 tab switches, 100% face presence).</td>
+          <td><strong style="color: #dc2626;">Completely Missing:</strong> Zero proctor metrics; recruiters cannot tell if candidate cheated on technical screenings.</td>
+        </tr>
+        <tr>
+          <td><strong>Live GitHub Code Review</strong></td>
+          <td>Live repository telemetry inside the ATS candidate review card (top repos, star count, commit language breakdown).</td>
+          <td><strong style="color: #dc2626;">Completely Missing:</strong> Relies solely on candidate text input descriptions with no real-time code verification.</td>
+        </tr>
+        <tr>
+          <td><strong>Structured Role Requisitions</strong></td>
+          <td>Supports posting Summer Technical Internships, 6-Month Co-Ops, Research Apprenticeships, and Graduate Trainee Openings with customized skill weights.</td>
+          <td><strong style="color: #dc2626;">Completely Missing:</strong> Restricted to generic unstructured text job posts with basic fields.</td>
+        </tr>
+        <tr>
+          <td><strong>1-Click Ledger Shortlisting</strong></td>
+          <td>Shortlisting candidates mints a cryptographic SHA-256 transaction receipt anchoring candidate selection.</td>
+          <td><strong style="color: #dc2626;">Completely Missing:</strong> Basic unhashed status change in a local database table with no tamperproof audit log.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- ACADEMICIAN ROLE TABLE -->
+  <div class="card" style="border-left: 4px solid #4f46e5;">
+    <span class="role-badge badge-academician">Role 3: Academician & University Faculty</span>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 24%;">Capability</th>
+          <th style="width: 38%;">Present in SkillSetu (Our Website)</th>
+          <th style="width: 38%;">Status in SIH-2026-main (SkillBridge)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Automated Curriculum Harmonization</strong></td>
+          <td>Uses AI to compare college course syllabi against active corporate job demands, revealing curriculum lag.</td>
+          <td><strong style="color: #dc2626;">Completely Missing:</strong> Faculty dashboard only shows simple lists of created courses with no syllabus gap analysis.</td>
+        </tr>
+        <tr>
+          <td><strong>Institutional Project Endorsements</strong></td>
+          <td>Professors can digitally verify and sign capstone projects, minting university endorsement hashes on the TrustLedger.</td>
+          <td><strong style="color: #dc2626;">Completely Missing:</strong> No project endorsement workflow or cryptographic faculty signature mechanisms.</td>
+        </tr>
+        <tr>
+          <td><strong>Industry Collaborative Research & Lab Projects</strong></td>
+          <td>Enables engineering professors and department heads to track industry-sponsored research, live corporate consultancy projects, and student lab co-development.</td>
+          <td><strong style="color: #dc2626;">Completely Missing:</strong> Has zero infrastructure for faculty-industry research collaboration or corporate consultancy management.</td>
+        </tr>
+        <tr>
+          <td><strong>Accreditation Audit Generation</strong></td>
+          <td>Maintains auditable records of student mentorship hours and industry tie-ups required for NAAC & NBA reviews.</td>
+          <td><strong style="color: #dc2626;">Completely Missing:</strong> No automated export or compliance reporting for academic accreditation bodies.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ADMIN ROLE TABLE -->
+  <div class="card" style="border-left: 4px solid #dc2626;">
+    <span class="role-badge badge-admin">Role 4: Institutional Admin & Regulatory Authority</span>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 24%;">Capability</th>
+          <th style="width: 38%;">Present in SkillSetu (Our Website)</th>
+          <th style="width: 38%;">Status in SIH-2026-main (SkillBridge)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>National Workforce Heatmap</strong></td>
+          <td>Interactive geographic heatmap of Indian states showing regional talent supply vs. corporate demand.</td>
+          <td><strong style="color: #dc2626;">Completely Missing:</strong> Only shows elementary counter cards (Total Users, Total Jobs, Total Applications).</td>
+        </tr>
+        <tr>
+          <td><strong>TrustLedger Node Monitor</strong></td>
+          <td>Live telemetry monitoring distributed cryptographic verification nodes, block height, and health metrics.</td>
+          <td><strong style="color: #dc2626;">Completely Missing:</strong> No ledger or blockchain architecture exists to inspect.</td>
+        </tr>
+        <tr>
+          <td><strong>Regulatory Compliance Telemetry</strong></td>
+          <td>Real-time compliance tracking against AICTE and UGC statutory accreditation benchmarks (NBA, NAAC, NIRF).</td>
+          <td><strong style="color: #dc2626;">Completely Missing:</strong> No regulatory or policy alignment indicators.</td>
+        </tr>
+        <tr>
+          <td><strong>DPDP Act 2023 Enforcement</strong></td>
+          <td>Automatic PII scrubber sanitizing phone numbers, emails, and 12-digit Indian Aadhaar numbers before AI evaluation.</td>
+          <td><strong style="color: #dc2626;">Completely Missing:</strong> Stores and processes unredacted student data with zero DPDP 2023 compliance.</td>
+        </tr>
+        <tr>
+          <td><strong>Bilingual Language Engine</strong></td>
+          <td>Dynamic topbar toggle switching the entire interface between English and Hindi (<code>हिंदी</code>) in real time.</td>
+          <td><strong style="color: #dc2626;">Completely Missing:</strong> 100% hardcoded English with zero internationalization (i18n) framework.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 2: 20 NEW FEATURES (5 PER ROLE) -->
+  <div class="section-title">
+    <span>2. Innovation Roadmap: 5 High-Impact Technical Features for EACH Role</span>
+    <span class="tag">20 Next-Gen Features</span>
+  </div>
+
+  <!-- STUDENT NEW FEATURES -->
+  <div style="margin-bottom: 10px;">
+    <span class="role-badge badge-student">Student Role: 5 Next-Gen Additions</span>
+    <div class="role-grid">
+      <div class="feature-item">
+        <strong>1. Immediate Resume Onboarding & Synthesis</strong>
+        First-login drag-and-drop resume upload. Server AI parses text in &lt;100ms, synthesizes preliminary profile, and allows student to review/add missing achievements before launching dashboard.
+      </div>
+      <div class="feature-item">
+        <strong>2. AI Certificate Credibility & Anti-Forgery Engine</strong>
+        Multimodal Vision AI + PDF metadata splicing detector + automated QR code resolver verifying certificates against official registries before awarding TrustLedger verified badges.
+      </div>
+      <div class="feature-item">
+        <strong>3. Autonomous Server-Side AI Course Scout</strong>
+        Runs on platform server infrastructure (zero student API keys). Continuously crawls accredited academies (NPTEL, SWAYAM, MIT OCW, AWS), filtering by budget (Free ₹0 vs. Under ₹1,000).
+      </div>
+      <div class="feature-item">
+        <strong>4. AI Voice & Video Mock Technical Interview Simulator</strong>
+        Interactive AI avatar conducting role-specific technical and system-design interviews via voice, evaluating eye contact, clarity, and tech accuracy before live company drives.
+      </div>
+      <div class="feature-item" style="grid-column: span 2;">
+        <strong>5. Dynamic ATS Resume Scorer & 1-Click Keyword Tailor</strong>
+        Uploads PDF resumes, compares keywords against target job requisitions, generates an ATS compatibility score, and suggests bullet-point phrasing improvements.
+      </div>
+    </div>
+  </div>
+
+  <!-- RECRUITER NEW FEATURES -->
+  <div style="margin-bottom: 10px;">
+    <span class="role-badge badge-recruiter">Recruiter Role: 5 Next-Gen Additions</span>
+    <div class="role-grid">
+      <div class="feature-item">
+        <strong>1. In-Browser Proctored Coding & Engineering Sandbox</strong>
+        Interactive coding environment (Python, TypeScript, C++, SQL, or Docker configurations) with real-time proctored webcam recording, code execution telemetry, and zero local setup.
+      </div>
+      <div class="feature-item">
+        <strong>2. Predictive Candidate Offer Acceptance & Retention Index</strong>
+        AI analytics evaluating candidate travel radius, past interview conversion history, and stipend fit to predict probability of offer acceptance and 1-year retention.
+      </div>
+      <div class="feature-item">
+        <strong>3. Tamperproof Smart-Contract Letter of Intent (LOI) Minting</strong>
+        One-click generation of cryptographically signed, verifiable Letters of Intent (LOIs) anchored on the TrustLedger upon selecting a candidate.
+      </div>
+      <div class="feature-item">
+        <strong>4. Blind Resume Screening (Unbiased Merit Mode)</strong>
+        Toggle that temporarily masks candidate name, gender, college tier, and photo during technical rounds—ensuring 100% bias-free, meritocratic evaluation.
+      </div>
+      <div class="feature-item" style="grid-column: span 2;">
+        <strong>5. Automated Bulk Campus Interview Auto-Scheduler</strong>
+        Integrates with Google Calendar, Microsoft Teams, and Zoom to auto-schedule hundreds of technical and HR rounds across colleges, eliminating recruiter scheduling overhead.
+      </div>
+    </div>
+  </div>
+
+  <!-- ACADEMICIAN NEW FEATURES -->
+  <div style="margin-bottom: 10px;">
+    <span class="role-badge badge-academician">Academician Role: 5 Next-Gen Additions</span>
+    <div class="role-grid">
+      <div class="feature-item">
+        <strong>1. AI Curriculum Diff Engine (Syllabus Re-Harmonizer)</strong>
+        Professors upload existing university syllabus PDFs; AI compares them with 6 months of live recruiter postings to output an exact diff of missing vs. outdated topics.
+      </div>
+      <div class="feature-item">
+        <strong>2. Corporate Consultancy & Sponsored R&D Exchange</strong>
+        A dedicated marketplace where industries post live technical bottlenecks and university professors can submit bids to provide funded corporate consultancy.
+      </div>
+      <div class="feature-item">
+        <strong>3. One-Click NAAC / NBA Accreditation Dossier Generator</strong>
+        Instant compilation of student internship attendance records, industry mentorship hours, MoUs, and verified placement statistics formatted for accreditation bodies.
+      </div>
+      <div class="feature-item">
+        <strong>4. Industry Guest Lecture & Workshop Scheduling Portal</strong>
+        Allows universities to invite verified corporate engineering leads and industry architects for accredited guest lectures and hands-on laboratory workshops.
+      </div>
+      <div class="feature-item" style="grid-column: span 2;">
+        <strong>5. Collaborative Capstone Industry Co-Mentorship Hub</strong>
+        Enables corporate senior architects and engineers to co-mentor final-year college capstone projects alongside faculty, bridging theoretical research with production reality.
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN NEW FEATURES -->
+  <div style="margin-bottom: 10px;">
+    <span class="role-badge badge-admin">Admin & Regulatory Role: 5 Next-Gen Additions</span>
+    <div class="role-grid">
+      <div class="feature-item">
+        <strong>1. Predictive National Skill-Shortage Early Warning System</strong>
+        Forecasting dashboard modeling which technical domains will suffer acute talent deficits across India over the next 1–3 years (e.g. Semiconductor VLSI, Quantum Computing, Cloud Security, Edge AI).
+      </div>
+      <div class="feature-item">
+        <strong>2. Academic Bank of Credits (ABC) & DigiLocker Gateway</strong>
+        Directly syncs verified internship hours, proctored test badges, and training credits into the student’s official DigiLocker ABC account under NEP 2020.
+      </div>
+      <div class="feature-item">
+        <strong>3. Fraudulent Job Posting & Scam Recruiter Detector</strong>
+        Autonomous fraud filter scanning job postings for ghost companies, suspicious fee requests, or fake internship drives, instantly blacklisting illicit accounts.
+      </div>
+      <div class="feature-item">
+        <strong>4. Geofenced Regional Skilling Grant Optimizer</strong>
+        AI model recommending where central government skilling subsidies should be allocated based on regional deficit data (e.g. deploying IoT labs in Tier-3 colleges).
+      </div>
+      <div class="feature-item" style="grid-column: span 2;">
+        <strong>5. Real-Time Regulatory Telemetry & Gender Diversity Dashboard</strong>
+        Automated compliance dashboard for AICTE, UGC, and State Technical Universities displaying real-time gender ratios, stipend fairness metrics, and regional placement distribution.
+      </div>
+    </div>
+  </div>
+
+  <!-- PITCH DEFENSE SCRIPT BOX -->
+  <div class="pitch-quote">
+    <strong>💡 Pitch Defense for SIH Judges:</strong><br>
+    "Judges, our student onboarding is effortless and cryptographically secure. The moment a student logs in, our server-side AI analyzes their resume, populates their profile, and verifies their certificates using a <strong>Multimodal Vision & Metadata Anti-Forgery Engine</strong>. Students never need to expose personal API keys, and recruiters are guaranteed that every listed certificate on the platform is genuine and verified on our <strong>Sovereign SHA-256 TrustLedger</strong>."
+  </div>
+
+  <div class="footer-note">
+    Smart India Hackathon 2026 &bull; Team SIGMA &bull; Problem Statement SIH26044 &bull; Product: SkillSetu Enterprise
+  </div>
+
+</body>
+</html>

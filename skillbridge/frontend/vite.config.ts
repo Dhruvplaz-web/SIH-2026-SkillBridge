@@ -16,7 +16,7 @@ export default defineConfig({
   build: {
     // Production hardening: Disable source maps to protect intellectual property and eliminate source map leaks
     sourcemap: false,
-    chunkSizeWarningLimit: 600,
+    chunkSizeWarningLimit: 800,
     rollupOptions: {
       output: {
         // Partition large bundles into granular, independently cacheable chunks

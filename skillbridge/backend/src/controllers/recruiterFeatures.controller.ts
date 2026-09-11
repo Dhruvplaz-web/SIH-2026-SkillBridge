@@ -284,3 +284,71 @@ export async function getCampusInterviews(req: AuthRequest, res: Response) {
     return res.status(500).json({ error: 'Failed to fetch interviews' });
   }
 }
+
+// ── 5. Recruiter Candidate Coding Submissions & Review ──────
+export async function getCandidateCodingSubmissions(req: AuthRequest, res: Response) {
+  try {
+    const { candidateId, sandboxId } = req.query;
+    let sql = `
+      SELECT cs.*, sb.title as challenge_title, sb.difficulty as challenge_difficulty, sb.language as challenge_language
+      FROM coding_submissions cs
+      LEFT JOIN coding_sandboxes sb ON cs.sandbox_id = sb.id
+      WHERE 1=1
+    `;
+    const args: any[] = [];
+    if (candidateId) {
+      sql += ' AND cs.candidate_id = ?';
+      args.push(candidateId);
+    }
+    if (sandboxId) {
+      sql += ' AND cs.sandbox_id = ?';
+      args.push(sandboxId);
+    }
+    sql += ' ORDER BY cs.created_at DESC LIMIT 50';
+
+    const result = await db.execute({ sql, args });
+    return res.json({ submissions: result.rows });
+  } catch (err: any) {
+    console.error('Error fetching coding submissions:', err);
+    return res.status(500).json({ error: 'Failed to fetch candidate coding submissions' });
+  }
+}
+
+export async function assignCodingChallengeToCandidate(req: AuthRequest, res: Response) {
+  try {
+    const recruiterId = req.user!.id;
+    const { candidateId, challengeId, deadline, message } = req.body;
+
+    if (!candidateId || !challengeId) {
+      return res.status(400).json({ error: 'Candidate ID and challenge ID are required' });
+    }
+
+    const sbRes = await db.execute({ sql: 'SELECT title FROM coding_sandboxes WHERE id = ?', args: [challengeId] });
+    if (sbRes.rows.length === 0) {
+      return res.status(404).json({ error: 'Coding challenge not found' });
+    }
+    const challengeTitle = (sbRes.rows[0] as any).title;
+
+    const recruiterRes = await db.execute({ sql: 'SELECT name FROM users WHERE id = ?', args: [recruiterId] });
+    const companyName = recruiterRes.rows.length > 0 ? (recruiterRes.rows[0] as any).name : 'Partner Enterprise';
+
+    // Insert notification for candidate
+    await db.execute({
+      sql: 'INSERT INTO notifications (id, user_id, message, type) VALUES (?, ?, ?, ?)',
+      args: [
+        cuid(),
+        candidateId,
+        `Coding Assessment Assigned: ${companyName} has invited you to solve '${challengeTitle}' in the Practical Coding Arena.${deadline ? ` Deadline: ${deadline}.` : ''}${message ? ` Note: "${message}"` : ''}`,
+        'INFO'
+      ]
+    });
+
+    return res.status(201).json({
+      success: true,
+      message: `Successfully assigned coding assessment '${challengeTitle}' to candidate with notification dispatched.`
+    });
+  } catch (err: any) {
+    console.error('Error assigning coding challenge:', err);
+    return res.status(500).json({ error: 'Failed to assign coding challenge' });
+  }
+}

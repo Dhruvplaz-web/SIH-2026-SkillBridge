@@ -22,9 +22,57 @@
   <!-- Institutional Registration -->
   <url>
     <loc>https://skillsetu.gov.in/register</loc>
-    <lastmod>2026-09-04T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-10T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <!-- Core: About Mission -->
+  <url>
+    <loc>https://skillsetu.gov.in/about</loc>
+    <lastmod>2026-09-10T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Core: Contact National Cell -->
+  <url>
+    <loc>https://skillsetu.gov.in/contact</loc>
+    <lastmod>2026-09-10T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Legal: Privacy Policy -->
+  <url>
+    <loc>https://skillsetu.gov.in/privacy</loc>
+    <lastmod>2026-09-10T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Legal: Terms of Service -->
+  <url>
+    <loc>https://skillsetu.gov.in/terms</loc>
+    <lastmod>2026-09-10T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Legal: Cookie Policy -->
+  <url>
+    <loc>https://skillsetu.gov.in/cookies</loc>
+    <lastmod>2026-09-10T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Legal: Accessibility Statement -->
+  <url>
+    <loc>https://skillsetu.gov.in/accessibility</loc>
+    <lastmod>2026-09-10T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 
   <!-- Student Harmonization Hub -->

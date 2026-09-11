@@ -12,6 +12,30 @@ const ROUTE_META_MAP: Record<string, MetaConfig> = {
     title: 'SkillSetu – Sovereign National Skill Harmonization & Cryptographic Attestation Platform',
     description: "India's sovereign AI-driven skill harmonization, NCrF-aligned cryptographic attestation, and zero-knowledge competency ledger platform connecting students, academicians, and recruiters.",
   },
+  '/about': {
+    title: 'About SkillSetu | Sovereign National Skill Harmonization Mission',
+    description: 'Learn about Problem Statement SIH26044, our four-sided national stakeholder highway, and sovereign AICTE skill verification architecture.',
+  },
+  '/contact': {
+    title: 'Contact National Coordination Cell | SkillSetu',
+    description: 'Connect with SkillSetu national coordination cell, institutional grievance redressal desk, and enterprise support team.',
+  },
+  '/privacy': {
+    title: 'Privacy Policy & DPDP Act Compliance | SkillSetu',
+    description: 'Statutory privacy policy detailing candidate data protection, non-monetization covenant, and DPDP Act 2023 compliance.',
+  },
+  '/terms': {
+    title: 'Terms of Service & Stakeholder Accord | SkillSetu',
+    description: 'Official terms of service governing students, corporate recruiters, and accredited higher education institutions.',
+  },
+  '/cookies': {
+    title: 'Cookie & Local Storage Policy | SkillSetu',
+    description: 'Complete transparency report on essential session authentication tokens and zero third-party tracking policies.',
+  },
+  '/accessibility': {
+    title: 'Accessibility Statement & WCAG 2.1 AA Standards | SkillSetu',
+    description: 'Our sovereign commitment to universal digital accessibility, keyboard navigation, and RPwD Act 2016 conformance.',
+  },
   '/login': {
     title: 'Sign In | SkillSetu Sovereign Portal',
     description: 'Secure, zero-trust authentication portal for Students, Recruiter Organizations, and Academic Institutions.',

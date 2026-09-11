@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
   AlertTriangle, TrendingUp, Sparkles, ShieldAlert, CheckCircle2, 
-  ArrowRight, RefreshCw, Cpu, Database, Plus, Compass
+  ArrowRight, RefreshCw, Cpu, Database, Plus, Compass, FileText,
+  Printer, ShieldCheck, Download, Award
 } from 'lucide-react';
 import { Topbar } from '../../components/layout/Topbar';
 import { PageLoader } from '../../components/ui/Spinner';
+import { Modal } from '../../components/ui/Modal';
 import { adminFeaturesAPI } from '../../services/api';
 
 export default function SkillShortageWarning() {
@@ -13,6 +15,7 @@ export default function SkillShortageWarning() {
   const [loading, setLoading] = useState(true);
   const [customDomain, setCustomDomain] = useState('');
   const [generating, setGenerating] = useState(false);
+  const [selectedForecast, setSelectedForecast] = useState<any>(null);
 
   useEffect(() => {
     loadForecasts();
@@ -139,9 +142,16 @@ export default function SkillShortageWarning() {
                 </div>
               </div>
 
-              <div className="pt-2 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
-                <span>AICTE Council Review ID: #{f.id}</span>
-                <span className="text-teal-700 font-bold">Model Confidence: 94.8%</span>
+              <div className="pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
+                <span className="font-mono text-[10px]">Review ID: #{f.id}</span>
+                <button
+                  type="button"
+                  onClick={() => setSelectedForecast(f)}
+                  className="px-3 py-1.5 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white rounded-lg text-xs font-bold shadow-xs flex items-center gap-1.5 cursor-pointer transition-all"
+                >
+                  <FileText className="w-3.5 h-3.5" />
+                  <span>Promulgate AICTE Circular</span>
+                </button>
               </div>
             </div>
           ))}
@@ -149,6 +159,113 @@ export default function SkillShortageWarning() {
 
       </div>
 
+      {/* Official AICTE Regulatory Policy Directive Circular Modal */}
+      {selectedForecast && (
+        <Modal
+          open={!!selectedForecast}
+          onClose={() => setSelectedForecast(null)}
+          title="Government of India • AICTE Regulatory Policy Directive"
+          size="xl"
+        >
+          <div className="space-y-6 text-xs text-gray-800 font-sans">
+            {/* Circular Letterhead */}
+            <div className="text-center pb-4 border-b-2 border-slate-900 space-y-1">
+              <span className="text-[10px] uppercase font-bold tracking-widest text-slate-500 block">
+                All India Council for Technical Education (AICTE)
+              </span>
+              <h2 className="text-base font-extrabold uppercase text-slate-900">
+                Policy & Academic Planning Bureau • Statutory Directive
+              </h2>
+              <p className="text-[10px] text-gray-600">
+                Nelson Mandela Marg, Vasant Kunj, New Delhi - 110070
+              </p>
+            </div>
+
+            {/* Circular Metadata */}
+            <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 grid grid-cols-2 gap-3 font-mono text-[11px]">
+              <div>
+                <span className="text-gray-400 block text-[10px] uppercase">Circular Ref No:</span>
+                <strong className="text-slate-900">AICTE/P&AP/CIRCULAR/2026/F-{selectedForecast.id.slice(-4).toUpperCase()}</strong>
+              </div>
+              <div className="text-right">
+                <span className="text-gray-400 block text-[10px] uppercase">Date of Promulgation:</span>
+                <strong className="text-slate-900">{new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</strong>
+              </div>
+              <div className="col-span-2 pt-2 border-t border-slate-200">
+                <span className="text-gray-400 block text-[10px] uppercase">Subject:</span>
+                <strong className="text-slate-900 text-xs font-sans">
+                  Mandatory Curriculum Amendment & Capacity Scaling Directive: {selectedForecast.domain} (Projected National Deficit: +{selectedForecast.projected_deficit_pct}%)
+                </strong>
+              </div>
+            </div>
+
+            {/* Directive Clauses */}
+            <div className="space-y-3 text-xs leading-relaxed text-gray-700">
+              <p>
+                <strong>To: </strong> All Vice-Chancellors of Technical Universities, Directors of NITs/IIITs, and Principals of AICTE-Approved Engineering Institutions.
+              </p>
+
+              <div className="space-y-2 p-3 bg-red-50/60 border border-red-200 rounded-xl text-red-950">
+                <h4 className="font-bold text-xs uppercase text-red-900 flex items-center gap-1.5">
+                  <AlertTriangle className="w-3.5 h-3.5 text-red-600" />
+                  Statutory Directives (AICTE Act 1987 §10(1) & NEP 2020 §11.2):
+                </h4>
+                <ol className="list-decimal list-inside space-y-1.5 text-xs text-red-900">
+                  <li>
+                    <strong>Mandatory Core Track: </strong> All Computer Science & Technology faculties must introduce an 8-credit specialization module focusing on <em>{selectedForecast.key_skills}</em> effective Academic Year 2026–2027.
+                  </li>
+                  <li>
+                    <strong>Industry Co-Mentorship Requirement: </strong> Capstone dissertations in this domain must be co-guided by a certified industry professional and attested on the Sovereign TrustLedger.
+                  </li>
+                  <li>
+                    <strong>MODROB Capital Subsidy: </strong> Institutions establishing specialized laboratory infrastructure for {selectedForecast.domain} are eligible for priority capital grants up to ₹25 Lakhs under AICTE Modernization of Laboratories (MODROB).
+                  </li>
+                  <li>
+                    <strong>Board of Studies Alignment: </strong> The Institution's Academic Council must ratify the updated syllabus using the AICTE Curriculum Harmonizer within 90 days of this notice.
+                  </li>
+                </ol>
+              </div>
+
+              <p className="text-[11px] text-gray-600">
+                Non-compliance or delay in curricular harmonization may impact institutional NIRF ranking weightage and seat expansion approvals for subsequent cycles.
+              </p>
+            </div>
+
+            {/* Signature Block */}
+            <div className="pt-6 border-t border-gray-200 flex items-center justify-between">
+              <div className="space-y-0.5">
+                <span className="text-[10px] font-mono text-teal-700 font-bold flex items-center gap-1">
+                  <ShieldCheck className="w-3.5 h-3.5 text-teal-600" /> Sovereign Seal Attested
+                </span>
+                <span className="text-[10px] text-gray-400 font-mono">Digitally Signed via National Knowledge Network</span>
+              </div>
+
+              <div className="text-right">
+                <div className="font-bold text-gray-900">Prof. T. G. Sitharam</div>
+                <div className="text-[10px] text-gray-500">Chairman, AICTE & Member Secretary</div>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="pt-2 border-t border-gray-200 flex justify-end gap-2">
+              <button
+                type="button"
+                onClick={() => setSelectedForecast(null)}
+                className="btn-secondary px-3 py-2 text-xs font-bold"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                onClick={() => window.print()}
+                className="btn-primary px-4 py-2 text-xs font-bold flex items-center gap-1.5 shadow-sm"
+              >
+                <Printer className="w-3.5 h-3.5" /> Print / Export Official Circular
+              </button>
+            </div>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 }
